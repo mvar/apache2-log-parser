@@ -18,6 +18,32 @@ class ErrorLogParser implements ParserInterface
             throw new ParserException('Parser argument must be a string.');
         }
 
-        // TODO: Implement parseLine() method.
+        if (!preg_match($this->getPattern(), $line, $matches)) {
+            throw new ParserException('Given line does not match predefined pattern.');
+        }
+
+        // Remove indexed values
+        $filtered = array_filter(array_keys($matches), 'is_string');
+        $result = array_intersect_key($matches, array_flip($filtered));
+        $result = array_filter($result);
+
+        // Convert date format to ISO
+        $date = new \DateTime($result['time']);
+        $result['time'] = $date->format(\DateTime::ISO8601);
+
+        return $result;
+    }
+
+    /**
+     * Returns pattern of log line
+     *
+     * @return string
+     */
+    protected function getPattern()
+    {
+        $pattern = '/\[(?<time>.+)\] \[(?<error_level>\w+)\]( \[client\ (?<client_ip>.+)])? ' .
+            '(?<message>.+(?=, referer)|.+)(, referer: (?<referer>.+))?/';
+
+        return $pattern;
     }
 }
