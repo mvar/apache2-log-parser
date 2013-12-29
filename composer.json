@@ -1,0 +1,23 @@
+{
+    "name": "mvar/apache2-log-parser",
+    "description": "Apache2 access and error logs parser",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mantas Varatiejus",
+            "email": "var.mantas@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "MVar\\Apache2LogParser\\": ""
+        }
+    },
+    "target-dir": "MVar/Apache2LogParser"
+}
