@@ -121,6 +121,19 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'user_agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko',
                 )
             ),
+            array(
+                AccessLogParser::FORMAT_COMBINED,
+                '192.168.25.1 - - [25/Jun/2012:14:00:14 -0700] "-" 408 0 "-" "-"', // HTTP 408 "Request Timeout"
+                array(
+                    'client_ip' => '192.168.25.1',
+                    'identity' => '-',
+                    'user_id' => '-',
+                    'time' => '2012-06-25T14:00:14-0700',
+                    'response_code' => '408',
+                    'referer' => '-',
+                    'user_agent' => '-',
+                )
+            ),
         );
     }
 }

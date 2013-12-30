@@ -33,9 +33,9 @@ class AccessLogParser implements ParserInterface
         '%l' => '(?<identity>\S+)',
         '%u' => '(?<user_id>\S+)',
         '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
-        '%r' => '(?<request_method>\w+) (?<request_file>\S+) (?<request_protocol>\S+)',
+        '%r' => '((?<request_method>\w+) (?<request_file>\S+) (?<request_protocol>\S+)|-)',
         '%>s' => '(?<response_code>[2-5]\d\d)',
-        '%b' => '(?<response_body_size>-|\d+)',
+        '%b' => '(?<response_body_size>\d+)',
 
         '%{Referer}i' => '(?<referer>.*)',
         '%{User-agent}i' => '(?<user_agent>.*)',
