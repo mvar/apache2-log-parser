@@ -126,13 +126,31 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 AccessLogParser::FORMAT_COMBINED,
-                '192.168.25.1 - - [25/Jun/2012:14:00:14 -0700] "-" 408 0 "-" "-"', // HTTP 408 "Request Timeout"
+                // HTTP error 408 "Request Timeout"
+                '192.168.25.1 - - [25/Jun/2012:14:00:14 -0700] "-" 408 0 "-" "-"',
                 array(
                     'client_ip' => '192.168.25.1',
                     'identity' => '-',
                     'user_id' => '-',
                     'time' => '2012-06-25T14:00:14-0700',
                     'response_code' => '408',
+                    'referer' => '-',
+                    'user_agent' => '-',
+                )
+            ),
+            array(
+                AccessLogParser::FORMAT_COMBINED,
+                // HTTP error 414 "Request URI too long"
+                '192.168.139.1 - - [10/Oct/2013:00:26:32 +0300] "GET /' . str_repeat('a', 7995) . '" 414 540 "-" "-"',
+                array(
+                    'client_ip' => '192.168.139.1',
+                    'identity' => '-',
+                    'user_id' => '-',
+                    'time' => '2013-10-10T00:26:32+0300',
+                    'request_method' => 'GET',
+                    'request_file' => '/' . str_repeat('a', 7995),
+                    'response_code' => '414',
+                    'response_body_size' => '540',
                     'referer' => '-',
                     'user_agent' => '-',
                 )
