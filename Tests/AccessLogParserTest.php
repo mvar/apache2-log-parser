@@ -52,6 +52,24 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_body_size' => '2326',
                 )
             ),
+            array(
+                AccessLogParser::FORMAT_COMBINED,
+                '127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326 ' .
+                    '"http://www.example.com/start.html" "Mozilla/4.08 [en] (Win98; I ;Nav)"',
+                array(
+                    'client_ip' => '127.0.0.1',
+                    'identity' => '-',
+                    'user_id' => 'frank',
+                    'time' => '2000-10-10T13:55:36-0700',
+                    'request_method' => 'GET',
+                    'request_file' => '/apache_pb.gif',
+                    'request_protocol' => 'HTTP/1.0',
+                    'response_code' => '200',
+                    'response_body_size' => '2326',
+                    'referer' => 'http://www.example.com/start.html',
+                    'user_agent' => 'Mozilla/4.08 [en] (Win98; I ;Nav)',
+                )
+            ),
         );
     }
 }

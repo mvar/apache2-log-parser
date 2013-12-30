@@ -11,6 +11,7 @@ namespace MVar\Apache2LogParser;
 class AccessLogParser implements ParserInterface
 {
     const FORMAT_COMMON = '%h %l %u %t "%r" %>s %b';
+    const FORMAT_COMBINED = '%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-agent}i"';
 
     /**
      * @var string
@@ -35,6 +36,9 @@ class AccessLogParser implements ParserInterface
         '%r' => '(?<request_method>\w+) (?<request_file>\S+) (?<request_protocol>\S+)',
         '%>s' => '(?<response_code>[2-5]\d\d)',
         '%b' => '(?<response_body_size>-|\d+)',
+
+        '%{Referer}i' => '(?<referer>.*)',
+        '%{User-agent}i' => '(?<user_agent>.*)',
     );
 
     /**
