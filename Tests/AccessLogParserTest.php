@@ -72,7 +72,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 AccessLogParser::FORMAT_COMBINED,
-                '127.0.0.1 - - [28/Dec/2013:19:03:49 +0200] "GET /test-page/ HTTP/1.1" 200 8359 "-" "Symfony2 BrowserKit"',
+                '127.0.0.1 - - [28/Dec/2013:19:03:49 +0200] "GET /test-page/ HTTP/1.1" ' .
+                    '200 8359 "-" "Symfony2 BrowserKit"',
                 array(
                     'client_ip' => '127.0.0.1',
                     'identity' => '-',
@@ -89,7 +90,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 AccessLogParser::FORMAT_COMBINED,
-                '66.249.78.230 - - [29/Dec/2013:16:07:58 +0200] "GET /robots.txt HTTP/1.1" 200 408 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"',
+                '66.249.78.230 - - [29/Dec/2013:16:07:58 +0200] "GET /robots.txt HTTP/1.1" ' .
+                    '200 408 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"',
                 array(
                     'client_ip' => '66.249.78.230',
                     'identity' => '-',
@@ -106,7 +108,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 AccessLogParser::FORMAT_COMBINED,
-                '71.82.1.1 - - [29/Dec/2013:17:37:40 +0200] "GET / HTTP/1.1" 200 2577 "http://example.com/test/" "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"',
+                '71.82.1.1 - - [29/Dec/2013:17:37:40 +0200] "GET / HTTP/1.1" 200 2577 "http://example.com/test/" ' .
+                    '"Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"',
                 array(
                     'client_ip' => '71.82.1.1',
                     'identity' => '-',
