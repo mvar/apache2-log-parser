@@ -231,6 +231,23 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'user_agent' => 'Symfony2 BrowserKit',
                 )
             ),
+            array(
+                // Test for request method
+                '%m',
+                'POST',
+                array(
+                    'request_method' => 'POST',
+                )
+            ),
+            array(
+                // Test for request serve time
+                '%D %T',
+                '123 456',
+                array(
+                    'request_time_us' => '123',
+                    'request_time_s' => '456',
+                )
+            ),
         );
     }
 

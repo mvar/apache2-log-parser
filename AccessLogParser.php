@@ -113,10 +113,14 @@ class AccessLogParser implements ParserInterface
             '%B' => '(?<response_body_size>\d+)',
             // Size of response in bytes, excluding HTTP headers. In CLF format
             '%b' => '(?<response_body_size>\d+|-)',
+            // The time taken to serve the request, in microseconds
+            '%D' => '(?<request_time_us>\d+)',
             // Remote hostname
             '%h' => '(?<remote_host>\S+)',
             // Remote logname
             '%l' => '(?<identity>\S+)',
+            // The request method
+            '%m' => '(?<request_method>[A-Za-z]+)',
             // The canonical port of the server serving the request
             '%p' => '(?<server_port>\d+)',
             // Bytes sent, including headers
@@ -127,6 +131,8 @@ class AccessLogParser implements ParserInterface
             '%s' => '(?<original_status_code>[2-5]\d\d)',
             // Status of the final request
             '%>s' => '(?<response_code>[2-5]\d\d)',
+            // The time taken to serve the request, in seconds
+            '%T' => '(?<request_time_s>\d+)',
             // Time the request was received
             '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
             // Remote user
