@@ -79,6 +79,11 @@ class AccessLogParser implements ParserInterface
             $pattern
         );
 
+        // Put regexp patterns
+        foreach ($this->getCallbackPatterns() as $callbackPattern => $callback) {
+            $pattern = preg_replace_callback($callbackPattern, $callback, $pattern);
+        }
+
         $this->pattern = "/^{$pattern}$/";
 
         return $this->pattern;
@@ -102,10 +107,22 @@ class AccessLogParser implements ParserInterface
             '%b' => '(?<response_body_size>\d+)',
             // Bytes sent, including headers
             '%O' => '(?<bytes_sent>\d+)',
+        );
+    }
 
-            '%{Referer}i' => '(?<referer>.*)',
-            '%{User-agent}i' => '(?<user_agent>.*)',
-            '%{User-Agent}i' => '(?<user_agent>.*)', // TODO: fix duplicate (case)
+    /**
+     * Patterns that requires preg_replace_callback() to be set in place
+     *
+     * @return array
+     */
+    protected function getCallbackPatterns()
+    {
+        return array(
+            // Header lines in the request sent to the server (e.g., User-Agent, Referer)
+            '/%\{([A-Za-z0-9]+(\-[A-Za-z0-9]+)*)\}i/' => function (array $matches) {
+                $header = strtolower(str_replace('-', '_', $matches[1]));
+                return "(?<{$header}>.+)";
+            },
         );
     }
 }
