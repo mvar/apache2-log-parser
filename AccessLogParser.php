@@ -53,9 +53,11 @@ class AccessLogParser implements ParserInterface
         $result = array_intersect_key($matches, array_flip($filtered));
         $result = array_filter($result);
 
-        // Convert date format to ISO
-        $date = new \DateTime($result['time']);
-        $result['time'] = $date->format(\DateTime::ISO8601);
+        if (isset($result['time'])) {
+            // Convert date format to ISO
+            $date = new \DateTime($result['time']);
+            $result['time'] = $date->format(\DateTime::ISO8601);
+        }
 
         return $result;
     }
@@ -99,6 +101,8 @@ class AccessLogParser implements ParserInterface
     protected function getSimplePatterns()
     {
         return array(
+            // The percent sign
+            '%%' => '%',
             // Size of response in bytes, excluding HTTP headers
             '%b' => '(?<response_body_size>\d+)',
             // Remote hostname

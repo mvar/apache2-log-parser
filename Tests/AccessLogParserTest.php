@@ -175,6 +175,12 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'user_agent' => 'Apache/2.2.22 (Ubuntu) (internal dummy connection)',
                 )
             ),
+            array(
+                // Test for percent sign
+                '%% test',
+                '% test',
+                array()
+            ),
         );
     }
 }
