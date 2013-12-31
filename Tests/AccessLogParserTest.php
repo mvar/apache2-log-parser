@@ -49,7 +49,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_file' => '/apache_pb.gif',
                     'request_protocol' => 'HTTP/1.0',
                     'response_code' => '200',
-                    'response_body_size' => '2326',
+                    'bytes_sent' => '2326',
                 )
             ),
             array(
@@ -65,7 +65,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_file' => '/apache_pb.gif',
                     'request_protocol' => 'HTTP/1.0',
                     'response_code' => '200',
-                    'response_body_size' => '2326',
+                    'bytes_sent' => '2326',
                     'referer' => 'http://www.example.com/start.html',
                     'user_agent' => 'Mozilla/4.08 [en] (Win98; I ;Nav)',
                 )
@@ -83,7 +83,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_file' => '/test-page/',
                     'request_protocol' => 'HTTP/1.1',
                     'response_code' => '200',
-                    'response_body_size' => '8359',
+                    'bytes_sent' => '8359',
                     'referer' => '-',
                     'user_agent' => 'Symfony2 BrowserKit',
                 )
@@ -101,7 +101,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_file' => '/robots.txt',
                     'request_protocol' => 'HTTP/1.1',
                     'response_code' => '200',
-                    'response_body_size' => '408',
+                    'bytes_sent' => '408',
                     'referer' => '-',
                     'user_agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
                 )
@@ -119,7 +119,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_file' => '/',
                     'request_protocol' => 'HTTP/1.1',
                     'response_code' => '200',
-                    'response_body_size' => '2577',
+                    'bytes_sent' => '2577',
                     'referer' => 'http://example.com/test/',
                     'user_agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko',
                 )
@@ -150,7 +150,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_method' => 'GET',
                     'request_file' => '/' . str_repeat('a', 7995),
                     'response_code' => '414',
-                    'response_body_size' => '540',
+                    'bytes_sent' => '540',
                     'referer' => '-',
                     'user_agent' => '-',
                 )
