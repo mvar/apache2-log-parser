@@ -155,6 +155,26 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'user_agent' => '-',
                 )
             ),
+            array(
+                AccessLogParser::FORMAT_VHOST_COMBINED,
+                '127.0.1.1:80 127.0.0.1 - - [26/Jun/2012:10:41:10 -0700] "OPTIONS * HTTP/1.0" 200 126 "-" ' .
+                    '"Apache/2.2.22 (Ubuntu) (internal dummy connection)"',
+                array(
+                    'server_name' => '127.0.1.1',
+                    'server_port' => '80',
+                    'remote_host' => '127.0.0.1',
+                    'identity' => '-',
+                    'remote_user' => '-',
+                    'time' => '2012-06-26T10:41:10-0700',
+                    'request_method' => 'OPTIONS',
+                    'request_file' => '*',
+                    'request_protocol' => 'HTTP/1.0',
+                    'response_code' => '200',
+                    'bytes_sent' => '126',
+                    'referer' => '-',
+                    'user_agent' => 'Apache/2.2.22 (Ubuntu) (internal dummy connection)',
+                )
+            ),
         );
     }
 }

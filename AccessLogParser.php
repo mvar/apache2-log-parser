@@ -13,6 +13,7 @@ class AccessLogParser implements ParserInterface
     // Copied from Apache 2.2.22 config
     const FORMAT_COMMON = '%h %l %u %t "%r" %>s %O';
     const FORMAT_COMBINED = '%h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"';
+    const FORMAT_VHOST_COMBINED = '%v:%p %h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"';
 
     /**
      * @var string
@@ -104,6 +105,8 @@ class AccessLogParser implements ParserInterface
             '%h' => '(?<remote_host>\S+)',
             // Remote logname
             '%l' => '(?<identity>\S+)',
+            // The canonical port of the server serving the request
+            '%p' => '(?<server_port>\d+)',
             // Bytes sent, including headers
             '%O' => '(?<bytes_sent>\d+)',
             // First line of request
@@ -114,6 +117,8 @@ class AccessLogParser implements ParserInterface
             '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
             // Remote user
             '%u' => '(?<remote_user>\S+)',
+            // The canonical ServerName of the server serving the request
+            '%v' => '(?<server_name>\S+)',
         );
     }
 
