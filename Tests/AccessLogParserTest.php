@@ -181,6 +181,16 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 '% test',
                 array()
             ),
+            array(
+                // Test for full port support
+                '%{canonical}p %{local}p %{remote}p test',
+                '123 456 789 test',
+                array(
+                    'canonical_port' => 123,
+                    'local_port' => 456,
+                    'remote_port' => 789,
+                )
+            ),
         );
     }
 }

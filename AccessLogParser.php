@@ -139,6 +139,11 @@ class AccessLogParser implements ParserInterface
                 $header = strtolower(str_replace('-', '_', $matches[1]));
                 return "(?<{$header}>.+)";
             },
+            // The canonical port of the server serving the request, or the server's actual port,
+            // or the client's actual port
+            '/%\{(canonical|local|remote)\}p/' => function (array $matches) {
+                return '(?<' . $matches[1] . '_port>\d+)';
+            },
         );
     }
 }
