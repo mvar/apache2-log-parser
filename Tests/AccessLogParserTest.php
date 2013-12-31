@@ -30,6 +30,22 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test for parseLine() in case of invalid line
+     *
+     * @param string $format
+     * @param string $logLine
+     *
+     * @dataProvider getTestParseLineExceptionData()
+     * @expectedException \MVar\Apache2LogParser\ParserException
+     * @expectedExceptionMessage line does not match
+     */
+    public function testParseLineException($format, $logLine)
+    {
+        $parser = new AccessLogParser($format);
+        $parser->parseLine($logLine);
+    }
+
+    /**
      * Data provider for testParseLine()
      *
      * @return array[]
@@ -207,6 +223,19 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_body_size' => 0,
                 )
             ),
+        );
+    }
+
+    /**
+     * Data provider for testParseLineException()
+     *
+     * @return array[]
+     */
+    public function getTestParseLineExceptionData()
+    {
+        return array(
+            array('%b', 'abc'),
+            array('%B', '-'),
         );
     }
 }
