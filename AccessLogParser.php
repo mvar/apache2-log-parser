@@ -117,6 +117,8 @@ class AccessLogParser implements ParserInterface
             '%D' => '(?<request_time_us>\d+)',
             // Remote hostname
             '%h' => '(?<remote_host>\S+)',
+            // Bytes received, including request and headers
+            '%I' => '(?<bytes_received>\d+)',
             // Remote logname
             '%l' => '(?<identity>\S+)',
             // The request method
@@ -129,6 +131,8 @@ class AccessLogParser implements ParserInterface
             '%q' => '(?<query_string>\?\S+|)',
             // First line of request
             '%r' => '((?<request_method>\w+) (?<request_path>\S+)( (?<request_protocol>\S+))?|-)',
+            // Bytes transferred (received and sent), including request and headers
+            '%S' => '(?<bytes_transferred>\d+)',
             // The status of the original request
             '%s' => '(?<original_status_code>[2-5]\d\d)',
             // Status of the final request

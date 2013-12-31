@@ -257,6 +257,15 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'query_string' => '?googleguy=googley',
                 )
             ),
+            array(
+                // Test for bytes received and transferred
+                '%I %S',
+                '123 456',
+                array(
+                    'bytes_received' => '123',
+                    'bytes_transferred' => '456',
+                )
+            ),
         );
     }
 
