@@ -223,6 +223,14 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_body_size' => 0,
                 )
             ),
+            array(
+                // Test for predefined User-Agent format
+                AccessLogParser::FORMAT_AGENT,
+                'Symfony2 BrowserKit',
+                array(
+                    'user_agent' => 'Symfony2 BrowserKit',
+                )
+            ),
         );
     }
 

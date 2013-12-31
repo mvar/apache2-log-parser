@@ -14,6 +14,7 @@ class AccessLogParser implements ParserInterface
     const FORMAT_COMMON = '%h %l %u %t "%r" %>s %O';
     const FORMAT_COMBINED = '%h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"';
     const FORMAT_VHOST_COMBINED = '%v:%p %h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"';
+    const FORMAT_AGENT = '%{User-Agent}i';
 
     /**
      * @var string
@@ -44,6 +45,7 @@ class AccessLogParser implements ParserInterface
             throw new ParserException('Parser argument must be a string.');
         }
 
+        // TODO: throw fat exception if preg_match() returns FALSE
         if (!preg_match($this->getPattern(), $line, $matches)) {
             throw new ParserException('Given line does not match predefined pattern.');
         }
