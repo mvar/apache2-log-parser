@@ -115,6 +115,8 @@ class AccessLogParser implements ParserInterface
             '%O' => '(?<bytes_sent>\d+)',
             // First line of request
             '%r' => '((?<request_method>\w+) (?<request_path>\S+)( (?<request_protocol>\S+))?|-)',
+            // The status of the original request
+            '%s' => '(?<original_status_code>[2-5]\d\d)',
             // Status of the final request
             '%>s' => '(?<response_code>[2-5]\d\d)',
             // Time the request was received

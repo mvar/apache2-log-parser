@@ -191,6 +191,14 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_port' => 789,
                 )
             ),
+            array(
+                // Test for status code of the original request
+                '%s',
+                '201',
+                array(
+                    'original_status_code' => 201,
+                )
+            ),
         );
     }
 }
