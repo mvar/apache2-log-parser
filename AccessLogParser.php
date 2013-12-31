@@ -25,27 +25,6 @@ class AccessLogParser implements ParserInterface
     protected $pattern;
 
     /**
-     * Patters. This is not validator, so in most cases patterns should not be exact
-     *
-     * @var array
-     */
-    protected $patterns = array(
-        '%h' => '(?<client_ip>\S+)',
-        '%l' => '(?<identity>\S+)',
-        '%u' => '(?<user_id>\S+)',
-        '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
-        '%r' => '((?<request_method>\w+) (?<request_file>\S+)( (?<request_protocol>\S+))?|-)',
-        '%>s' => '(?<response_code>[2-5]\d\d)',
-        '%b' => '(?<response_body_size>\d+)',
-        // Bytes sent, including headers
-        '%O' => '(?<bytes_sent>\d+)',
-
-        '%{Referer}i' => '(?<referer>.*)',
-        '%{User-agent}i' => '(?<user_agent>.*)',
-        '%{User-Agent}i' => '(?<user_agent>.*)', // TODO: fix duplicate (case)
-    );
-
-    /**
      * Constructor
      *
      * @param string $format
@@ -87,11 +66,46 @@ class AccessLogParser implements ParserInterface
      */
     protected function getPattern()
     {
-        if ($this->pattern === null) {
-            $this->pattern = str_replace(array_keys($this->patterns), array_values($this->patterns), $this->format);
-            $this->pattern = "/^{$this->pattern}$/";
+        if ($this->pattern !== null) {
+            return $this->pattern;
         }
 
+        $pattern = $this->format;
+
+        // Put simple patterns
+        $pattern = str_replace(
+            array_keys($this->getSimplePatterns()),
+            array_values($this->getSimplePatterns()),
+            $pattern
+        );
+
+        $this->pattern = "/^{$pattern}$/";
+
         return $this->pattern;
+    }
+
+    /**
+     * Returns patters that can be replaced with as strings.
+     * Note: This parser is not validator, so in most cases patterns must not be exact
+     *
+     * @return array
+     */
+    protected function getSimplePatterns()
+    {
+        return array(
+            '%h' => '(?<client_ip>\S+)',
+            '%l' => '(?<identity>\S+)',
+            '%u' => '(?<user_id>\S+)',
+            '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
+            '%r' => '((?<request_method>\w+) (?<request_file>\S+)( (?<request_protocol>\S+))?|-)',
+            '%>s' => '(?<response_code>[2-5]\d\d)',
+            '%b' => '(?<response_body_size>\d+)',
+            // Bytes sent, including headers
+            '%O' => '(?<bytes_sent>\d+)',
+
+            '%{Referer}i' => '(?<referer>.*)',
+            '%{User-agent}i' => '(?<user_agent>.*)',
+            '%{User-Agent}i' => '(?<user_agent>.*)', // TODO: fix duplicate (case)
+        );
     }
 }
