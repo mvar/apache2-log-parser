@@ -199,6 +199,14 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'original_status_code' => 201,
                 )
             ),
+            array(
+                // Test for Size of response in bytes, excluding HTTP headers. In CLF format
+                '%b',
+                '-',
+                array(
+                    'response_body_size' => 0,
+                )
+            ),
         );
     }
 }

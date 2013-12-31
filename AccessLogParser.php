@@ -59,6 +59,10 @@ class AccessLogParser implements ParserInterface
             $result['time'] = $date->format(\DateTime::ISO8601);
         }
 
+        if (isset($result['response_body_size']) && $result['response_body_size'] == '-') {
+            $result['response_body_size'] = 0;
+        }
+
         return $result;
     }
 
@@ -104,7 +108,9 @@ class AccessLogParser implements ParserInterface
             // The percent sign
             '%%' => '%',
             // Size of response in bytes, excluding HTTP headers
-            '%b' => '(?<response_body_size>\d+)',
+            '%B' => '(?<response_body_size>\d+)',
+            // Size of response in bytes, excluding HTTP headers. In CLF format
+            '%b' => '(?<response_body_size>\d+|-)',
             // Remote hostname
             '%h' => '(?<remote_host>\S+)',
             // Remote logname
