@@ -98,15 +98,22 @@ class AccessLogParser implements ParserInterface
     protected function getSimplePatterns()
     {
         return array(
-            '%h' => '(?<client_ip>\S+)',
-            '%l' => '(?<identity>\S+)',
-            '%u' => '(?<user_id>\S+)',
-            '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
-            '%r' => '((?<request_method>\w+) (?<request_file>\S+)( (?<request_protocol>\S+))?|-)',
-            '%>s' => '(?<response_code>[2-5]\d\d)',
+            // Size of response in bytes, excluding HTTP headers
             '%b' => '(?<response_body_size>\d+)',
+            // Remote hostname
+            '%h' => '(?<remote_host>\S+)',
+            // Remote logname
+            '%l' => '(?<identity>\S+)',
             // Bytes sent, including headers
             '%O' => '(?<bytes_sent>\d+)',
+            // First line of request
+            '%r' => '((?<request_method>\w+) (?<request_file>\S+)( (?<request_protocol>\S+))?|-)',
+            // Status of the final request
+            '%>s' => '(?<response_code>[2-5]\d\d)',
+            // Time the request was received
+            '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
+            // Remote user
+            '%u' => '(?<remote_user>\S+)',
         );
     }
 
