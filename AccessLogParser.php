@@ -121,10 +121,12 @@ class AccessLogParser implements ParserInterface
             '%l' => '(?<identity>\S+)',
             // The request method
             '%m' => '(?<request_method>[A-Za-z]+)',
-            // The canonical port of the server serving the request
-            '%p' => '(?<server_port>\d+)',
             // Bytes sent, including headers
             '%O' => '(?<bytes_sent>\d+)',
+            // The canonical port of the server serving the request
+            '%p' => '(?<server_port>\d+)',
+            // The query string
+            '%q' => '(?<query_string>\?\S+|)',
             // First line of request
             '%r' => '((?<request_method>\w+) (?<request_path>\S+)( (?<request_protocol>\S+))?|-)',
             // The status of the original request
@@ -135,6 +137,8 @@ class AccessLogParser implements ParserInterface
             '%T' => '(?<request_time_s>\d+)',
             // Time the request was received
             '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
+            // The URL path requested, not including any query string
+            '%U' => '(?<request_path>\S+(?=\?))',
             // Remote user
             '%u' => '(?<remote_user>\S+)',
             // The canonical ServerName of the server serving the request

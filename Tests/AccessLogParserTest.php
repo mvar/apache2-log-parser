@@ -248,6 +248,15 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_time_s' => '456',
                 )
             ),
+            array(
+                // Test for URL path and query string
+                '%U%q',
+                '/path?googleguy=googley',
+                array(
+                    'request_path' => '/path',
+                    'query_string' => '?googleguy=googley',
+                )
+            ),
         );
     }
 
