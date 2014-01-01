@@ -315,6 +315,17 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'peer_ip' => '192.168.5.55',
                 )
             ),
+            array(
+                // Test for cookies
+                '"%{cookie1}C" "%{cookie_2}C"',
+                '"cookie1 contents" "cookie_2 contents"',
+                array(
+                    'cookies' => array(
+                        'cookie1' => 'cookie1 contents',
+                        'cookie_2' => 'cookie_2 contents',
+                    ),
+                )
+            ),
         );
     }
 

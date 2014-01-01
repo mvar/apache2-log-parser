@@ -57,6 +57,15 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
+        // Put all cookies to single array
+        foreach ($result as $key => $data) {
+            $search = 'cookies';
+            if (($pos = strpos($key, "{$search}__")) === 0) {
+                $result[$search][substr($key, strlen($search) + 2)] = $data;
+                unset($result[$key]);
+            }
+        }
+
         return $result;
     }
 
@@ -161,6 +170,10 @@ class AccessLogParser extends AbstractLineParser
                 $header = strtolower(str_replace('-', '_', $matches[1]));
                 $pattern = $header == 'referer' ? '\S+' : '.+';
                 return "(?<{$header}>{$pattern})";
+            },
+            // The contents of cookies in the request sent to the server
+            '/%\{(\S+)\}C/' => function (array $matches) {
+                return "(?<cookies__{$matches[1]}>.+)";
             },
             // The canonical port of the server serving the request, or the server's actual port,
             // or the client's actual port
