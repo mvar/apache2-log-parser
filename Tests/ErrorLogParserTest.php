@@ -37,18 +37,6 @@ class ErrorLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for parseLine() in case of exception when passed incorrect argument
-     *
-     * @expectedException \MVar\Apache2LogParser\ParserException
-     * @expectedExceptionMessage must be a string
-     */
-    public function testParseLineExceptionArgument()
-    {
-        $parser = new ErrorLogParser();
-        $parser->parseLine(array(123, 456));
-    }
-
-    /**
      * Data provider for testParseLine()
      *
      * @return array[]

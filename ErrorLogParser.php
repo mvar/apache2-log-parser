@@ -13,32 +13,13 @@ namespace MVar\Apache2LogParser;
  *
  * @package MVar\Apache2LogParser
  */
-class ErrorLogParser implements ParserInterface
+class ErrorLogParser extends AbstractLineParser
 {
     /**
-     * Parses single log line
-     *
-     * @param string $line
-     *
-     * @return array
-     * @throws ParserException
+     * {@inheritDoc}
      */
-    public function parseLine($line)
+    protected function prepareParsedData(array $matches)
     {
-        if (!is_string($line)) {
-            throw new ParserException('Parser argument must be a string.');
-        }
-
-        $match = preg_match($this->getPattern(), $line, $matches);
-
-        if ($match === false) {
-            throw new ParserException('Matcher failure. Please check if given format is valid.');
-        }
-
-        if (!$match) {
-            throw new NoMatchesException('Given line does not match predefined pattern.');
-        }
-
         // Remove indexed values
         $filtered = array_filter(array_keys($matches), 'is_string');
         $result = array_intersect_key($matches, array_flip($filtered));

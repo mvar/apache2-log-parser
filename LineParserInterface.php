@@ -8,7 +8,7 @@
 
 namespace MVar\Apache2LogParser;
 
-interface ParserInterface
+interface LineParserInterface
 {
     /**
      * Parses single log line

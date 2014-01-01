@@ -8,7 +8,7 @@
 
 namespace MVar\Apache2LogParser;
 
-class AccessLogParser implements ParserInterface
+class AccessLogParser extends AbstractLineParser
 {
     // Copied from Apache 2.2.22 config
     const FORMAT_COMMON = '%h %l %u %t "%r" %>s %O';
@@ -39,32 +39,6 @@ class AccessLogParser implements ParserInterface
     /**
      * {@inheritDoc}
      */
-    public function parseLine($line)
-    {
-        if (!is_string($line)) {
-            throw new ParserException('Parser argument must be a string.');
-        }
-
-        $match = preg_match($this->getPattern(), $line, $matches);
-
-        if ($match === false) {
-            throw new ParserException('Matcher failure. Please check if given format is valid.');
-        }
-
-        if (!$match) {
-            throw new NoMatchesException('Given line does not match predefined pattern.');
-        }
-
-        return $this->prepareParsedData($matches);
-    }
-
-    /**
-     * Prepare parsed data (matches) for end user
-     *
-     * @param array $matches
-     *
-     * @return array
-     */
     protected function prepareParsedData(array $matches)
     {
         // Remove indexed values
@@ -86,9 +60,7 @@ class AccessLogParser implements ParserInterface
     }
 
     /**
-     * Returns pattern of log line
-     *
-     * @return string
+     * {@inheritDoc}
      */
     protected function getPattern()
     {
