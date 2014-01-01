@@ -352,6 +352,16 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     ),
                 )
             ),
+            array(
+                // Test for dangerous environment variables
+                '"%{DANGEROUS.VARIABLE}e"',
+                '"custom variable contents"',
+                array(
+                    'env_vars' => array(
+                        'DANGEROUS_VARIABLE' => 'custom variable contents',
+                    ),
+                )
+            ),
         );
     }
 

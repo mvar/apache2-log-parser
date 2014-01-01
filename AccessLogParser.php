@@ -180,11 +180,15 @@ class AccessLogParser extends AbstractLineParser
             },
             // The contents of cookies in the request sent to the server
             '/%\{(\S+)\}C/' => function (array $matches) {
-                return "(?<cookies__{$matches[1]}>.+)";
+                $key = preg_replace('/([^a-z\d_]+)/i', '_', $matches[1]);
+                $key = trim($key, '_');
+                return "(?<cookies__{$key}>.+)";
             },
             // The contents of the environment variable
             '/%\{(\S+)\}e/' => function (array $matches) {
-                return "(?<env_vars__{$matches[1]}>.+)";
+                $key = preg_replace('/([^a-z\d_]+)/i', '_', $matches[1]);
+                $key = trim($key, '_');
+                return "(?<env_vars__{$key}>.+)";
             },
             // The canonical port of the server serving the request, or the server's actual port,
             // or the client's actual port
