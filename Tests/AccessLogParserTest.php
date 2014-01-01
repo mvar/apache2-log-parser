@@ -326,6 +326,14 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     ),
                 )
             ),
+            array(
+                // Test for filename
+                '"%f"',
+                '"/home/user/public_html/favicon.ico"',
+                array(
+                    'filename' => '/home/user/public_html/favicon.ico',
+                )
+            ),
         );
     }
 

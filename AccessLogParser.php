@@ -120,6 +120,8 @@ class AccessLogParser extends AbstractLineParser
             '%b' => '(?<response_body_size>\d+|-)',
             // The time taken to serve the request, in microseconds
             '%D' => '(?<request_time_us>\d+)',
+            // Filename
+            '%f' => '(?<filename>.+)',
             // The request protocol
             '%H' => '(?<request_protocol>\S+)',
             // Remote hostname
