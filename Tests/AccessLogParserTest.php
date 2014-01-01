@@ -342,6 +342,16 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'connection_status' => '+',
                 )
             ),
+            array(
+                // Test for environment variables
+                '"%{CUSTOM_VARIABLE}e"',
+                '"custom variable contents"',
+                array(
+                    'env_vars' => array(
+                        'CUSTOM_VARIABLE' => 'custom variable contents',
+                    ),
+                )
+            ),
         );
     }
 

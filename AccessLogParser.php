@@ -57,12 +57,15 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
-        // Put all cookies to single array
-        foreach ($result as $key => $data) {
-            $search = 'cookies';
-            if (($pos = strpos($key, "{$search}__")) === 0) {
-                $result[$search][substr($key, strlen($search) + 2)] = $data;
-                unset($result[$key]);
+        $arrayVariables = array('cookies', 'env_vars');
+
+        foreach ($arrayVariables as $search) {
+            // Put all variables to single array
+            foreach ($result as $key => $data) {
+                if (($pos = strpos($key, "{$search}__")) === 0) {
+                    $result[$search][substr($key, strlen($search) + 2)] = $data;
+                    unset($result[$key]);
+                }
             }
         }
 
@@ -178,6 +181,10 @@ class AccessLogParser extends AbstractLineParser
             // The contents of cookies in the request sent to the server
             '/%\{(\S+)\}C/' => function (array $matches) {
                 return "(?<cookies__{$matches[1]}>.+)";
+            },
+            // The contents of the environment variable
+            '/%\{(\S+)\}e/' => function (array $matches) {
+                return "(?<env_vars__{$matches[1]}>.+)";
             },
             // The canonical port of the server serving the request, or the server's actual port,
             // or the client's actual port
