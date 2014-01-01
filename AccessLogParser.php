@@ -45,9 +45,14 @@ class AccessLogParser implements ParserInterface
             throw new ParserException('Parser argument must be a string.');
         }
 
-        // TODO: throw fat exception if preg_match() returns FALSE
-        if (!preg_match($this->getPattern(), $line, $matches)) {
-            throw new ParserException('Given line does not match predefined pattern.');
+        $match = preg_match($this->getPattern(), $line, $matches);
+
+        if ($match === false) {
+            throw new ParserException('Matcher failure. Please check if given format is valid.');
+        }
+
+        if (!$match) {
+            throw new NoMatchesException('Given line does not match predefined pattern.');
         }
 
         // Remove indexed values
@@ -100,7 +105,7 @@ class AccessLogParser implements ParserInterface
 
     /**
      * Returns patters that can be replaced with as strings.
-     * Note: This parser is not validator, so in most cases patterns must not be exact
+     * Note: This parser is not a validator, so in most cases patterns must not be exact
      *
      * @return array
      */

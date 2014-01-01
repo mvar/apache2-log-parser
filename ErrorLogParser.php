@@ -29,8 +29,14 @@ class ErrorLogParser implements ParserInterface
             throw new ParserException('Parser argument must be a string.');
         }
 
-        if (!preg_match($this->getPattern(), $line, $matches)) {
-            throw new ParserException('Given line does not match predefined pattern.');
+        $match = preg_match($this->getPattern(), $line, $matches);
+
+        if ($match === false) {
+            throw new ParserException('Matcher failure. Please check if given format is valid.');
+        }
+
+        if (!$match) {
+            throw new NoMatchesException('Given line does not match predefined pattern.');
         }
 
         // Remove indexed values
