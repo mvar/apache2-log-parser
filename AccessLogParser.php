@@ -55,6 +55,18 @@ class AccessLogParser implements ParserInterface
             throw new NoMatchesException('Given line does not match predefined pattern.');
         }
 
+        return $this->prepareParsedData($matches);
+    }
+
+    /**
+     * Prepare parsed data (matches) for end user
+     *
+     * @param array $matches
+     *
+     * @return array
+     */
+    protected function prepareParsedData(array $matches)
+    {
         // Remove indexed values
         $filtered = array_filter(array_keys($matches), 'is_string');
         $result = array_intersect_key($matches, array_flip($filtered));
