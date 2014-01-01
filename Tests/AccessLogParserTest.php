@@ -283,6 +283,38 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_path' => '/my-page/',
                 )
             ),
+            array(
+                // Test for request protocol
+                '%H',
+                'HTTP/1.0',
+                array(
+                    'request_protocol' => 'HTTP/1.0',
+                )
+            ),
+            array(
+                // Test for local IP address
+                '%A',
+                '192.168.5.128',
+                array(
+                    'local_ip' => '192.168.5.128',
+                )
+            ),
+            array(
+                // Test for client IP address
+                '%a',
+                '192.168.5.1',
+                array(
+                    'client_ip' => '192.168.5.1',
+                )
+            ),
+            array(
+                // Test for real client IP address (e.g. when proxy is used)
+                '%{c}a',
+                '192.168.5.55',
+                array(
+                    'peer_ip' => '192.168.5.55',
+                )
+            ),
         );
     }
 

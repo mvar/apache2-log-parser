@@ -99,12 +99,20 @@ class AccessLogParser extends AbstractLineParser
         return array(
             // The percent sign
             '%%' => '%',
+            // Local IP address
+            '%A' => '(?<local_ip>[\dA-Za-z\:\.]{3,39})',
+            // Client IP address of the request
+            '%a' => '(?<client_ip>[\dA-Za-z\:\.]{3,39})',
+            // Underlying peer IP address of the connection
+            '%{c}a' => '(?<peer_ip>[\dA-Za-z\:\.]{3,39})',
             // Size of response in bytes, excluding HTTP headers
             '%B' => '(?<response_body_size>\d+)',
             // Size of response in bytes, excluding HTTP headers. In CLF format
             '%b' => '(?<response_body_size>\d+|-)',
             // The time taken to serve the request, in microseconds
             '%D' => '(?<request_time_us>\d+)',
+            // The request protocol
+            '%H' => '(?<request_protocol>\S+)',
             // Remote hostname
             '%h' => '(?<remote_host>\S+)',
             // Bytes received, including request and headers
