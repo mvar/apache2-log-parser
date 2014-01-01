@@ -14,6 +14,7 @@ class AccessLogParser extends AbstractLineParser
     const FORMAT_COMMON = '%h %l %u %t "%r" %>s %O';
     const FORMAT_COMBINED = '%h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"';
     const FORMAT_VHOST_COMBINED = '%v:%p %h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"';
+    const FORMAT_REFERER = '%{Referer}i -> %U';
     const FORMAT_AGENT = '%{User-Agent}i';
 
     /**
@@ -150,7 +151,8 @@ class AccessLogParser extends AbstractLineParser
             // Header lines in the request sent to the server (e.g., User-Agent, Referer)
             '/%\{([A-Za-z0-9]+(\-[A-Za-z0-9]+)*)\}i/' => function (array $matches) {
                 $header = strtolower(str_replace('-', '_', $matches[1]));
-                return "(?<{$header}>.+)";
+                $pattern = $header == 'referer' ? '\S+' : '.+';
+                return "(?<{$header}>{$pattern})";
             },
             // The canonical port of the server serving the request, or the server's actual port,
             // or the client's actual port

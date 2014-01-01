@@ -274,6 +274,15 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'bytes_transferred' => '456',
                 )
             ),
+            array(
+                // Test for predefined referer log format
+                AccessLogParser::FORMAT_REFERER,
+                'http://www.example.com/ -> /my-page/',
+                array(
+                    'referer' => 'http://www.example.com/',
+                    'request_path' => '/my-page/',
+                )
+            ),
         );
     }
 
