@@ -334,6 +334,14 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'filename' => '/home/user/public_html/favicon.ico',
                 )
             ),
+            array(
+                // Test for connection status
+                '%X',
+                '+',
+                array(
+                    'connection_status' => '+',
+                )
+            ),
         );
     }
 

@@ -156,6 +156,8 @@ class AccessLogParser extends AbstractLineParser
             '%u' => '(?<remote_user>\S+)',
             // The canonical ServerName of the server serving the request
             '%v' => '(?<server_name>\S+)',
+            // Connection status when response is completed
+            '%X' => '(?<connection_status>[Xx]|\+|\-)',
         );
     }
 
