@@ -131,7 +131,7 @@ class AccessLogParser extends AbstractLineParser
             // Time the request was received
             '%t' => '\[(?<time>\d\d\/\w{3}\/\d{4}\:\d\d\:\d\d\:\d\d [+-]\d{4})\]',
             // The URL path requested, not including any query string
-            '%U' => '(?<request_path>\S+(?=\?))',
+            '%U' => '(?<request_path>\S+?)',
             // Remote user
             '%u' => '(?<remote_user>\S+)',
             // The canonical ServerName of the server serving the request
