@@ -30,6 +30,26 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test for parseLine() if pattern is cached
+     */
+    public function testParseLineCachedPattern()
+    {
+        /** @var \PHPUnit_Framework_MockObject_MockObject|AccessLogParser $parser */
+        $parser = $this->getMock(
+            '\\MVar\\Apache2LogParser\\AccessLogParser',
+            array('getCallbackPatterns'),
+            array('%%')
+        );
+
+        $parser->expects($this->once())->method('getCallbackPatterns');
+
+        $parser->parseLine('%');
+
+        // Pattern should be cached
+        $parser->parseLine('%');
+    }
+
+    /**
      * Test for parseLine() in case of invalid line
      *
      * @param string $format
