@@ -1,6 +1,8 @@
 Apache2 access and error logs parser
 ====================================
 
+[![Build Status](https://secure.travis-ci.org/mvar/apache2-log-parser.png?branch=master)](http://travis-ci.org/mvar/apache2-log-parser)
+
 Installation
 ---
 
