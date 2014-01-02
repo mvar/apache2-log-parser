@@ -6,6 +6,21 @@ Apache2 access and error logs parser
 Installation
 ---
 
+Add package to your `composer.json`:
+
+```json
+{
+    "require": {
+        "mvar/apache2-log-parser": "dev-master"
+    }
+}
+```
+
+And run Composer to update your packages:
+
+```bash
+php composer.phar update
+```
 
 Usage
 -----
