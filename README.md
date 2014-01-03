@@ -55,13 +55,16 @@ array (
   'request_line' => 'GET /my-page/ HTTP/1.1',
   'response_code' => '200',
   'bytes_sent' => '2490',
-  'referer' => '-',
-  'user_agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
   'request' =>
   array (
     'method' => 'GET',
     'path' => '/my-page/',
     'protocol' => 'HTTP/1.1',
+  ),
+  'request_headers' =>
+  array (
+    'referer' => '-',
+    'user_agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
   ),
 )
 ```

@@ -57,7 +57,7 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
-        $arrayVariables = array('cookies', 'env_vars', 'request');
+        $arrayVariables = array('cookies', 'env_vars', 'request', 'request_headers');
 
         foreach ($arrayVariables as $search) {
             // Put all variables to single array
@@ -176,7 +176,7 @@ class AccessLogParser extends AbstractLineParser
             '/%\{([A-Za-z0-9]+(\-[A-Za-z0-9]+)*)\}i/' => function (array $matches) {
                 $header = strtolower(str_replace('-', '_', $matches[1]));
                 $pattern = $header == 'referer' ? '\S+' : '.+';
-                return "(?<{$header}>{$pattern})";
+                return "(?<request_headers__{$header}>{$pattern})";
             },
             // The contents of cookies in the request sent to the server
             '/%\{(\S+)\}C/' => function (array $matches) {
