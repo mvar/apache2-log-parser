@@ -64,6 +64,9 @@ array (
 
 ### Iterate through Apache log file
 
+Log iterator reads log file line by line. This means that it is possible to
+parse huge files with low memory usage.
+
 Let's say we have Apache log file `access.log` with following content:
 
 ```
