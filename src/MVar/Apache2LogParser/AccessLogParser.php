@@ -57,7 +57,7 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
-        $arrayVariables = array('cookies', 'env_vars', 'request', 'request_headers');
+        $arrayVariables = array('cookies', 'env_vars', 'request', 'request_headers', 'response_headers');
 
         foreach ($arrayVariables as $search) {
             // Put all variables to single array
@@ -189,6 +189,12 @@ class AccessLogParser extends AbstractLineParser
                 $key = preg_replace('/([^a-z\d_]+)/i', '_', $matches[1]);
                 $key = trim($key, '_');
                 return "(?<env_vars__{$key}>.+)";
+            },
+            // Header lines in the response sent from the server
+            '/%\{(\S+)\}o/' => function (array $matches) {
+                $key = preg_replace('/([^a-z\d_]+)/i', '_', $matches[1]);
+                $key = trim($key, '_');
+                return "(?<response_headers__{$key}>.+)";
             },
             // The canonical port of the server serving the request, or the server's actual port,
             // or the client's actual port

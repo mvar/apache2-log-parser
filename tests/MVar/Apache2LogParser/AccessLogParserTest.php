@@ -420,6 +420,27 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     ),
                 )
             ),
+            array(
+                // Test for response headers
+                '%{Content-Length}o',
+                '1553',
+                array(
+                    'response_headers' => array(
+                        'Content_Length' => '1553',
+                    ),
+                )
+            ),
+       /*     array(
+                // Test for response headers
+                '%{Content-Length}o "%{Content-Encoding}o"',
+                '1553 "gzip"',
+                array(
+                    'response_headers' => array(
+                        'Content_Length' => '1553',
+                        'Content-Encoding' => 'gzip',
+                    ),
+                )
+            ),     */
         );
     }
 
