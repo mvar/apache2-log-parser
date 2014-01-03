@@ -107,8 +107,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_code' => '200',
                     'bytes_sent' => '2326',
                     'request_headers' => array(
-                        'referer' => 'http://www.example.com/start.html',
-                        'user_agent' => 'Mozilla/4.08 [en] (Win98; I ;Nav)',
+                        'Referer' => 'http://www.example.com/start.html',
+                        'User-Agent' => 'Mozilla/4.08 [en] (Win98; I ;Nav)',
                     ),
                 )
             ),
@@ -130,8 +130,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_code' => '200',
                     'bytes_sent' => '8359',
                     'request_headers' => array(
-                        'referer' => '-',
-                        'user_agent' => 'Symfony2 BrowserKit',
+                        'Referer' => '-',
+                        'User-Agent' => 'Symfony2 BrowserKit',
                     ),
                 )
             ),
@@ -153,8 +153,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_code' => '200',
                     'bytes_sent' => '408',
                     'request_headers' => array(
-                        'referer' => '-',
-                        'user_agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+                        'Referer' => '-',
+                        'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
                     ),
                 )
             ),
@@ -176,8 +176,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_code' => '200',
                     'bytes_sent' => '2577',
                     'request_headers' => array(
-                        'referer' => 'http://example.com/test/',
-                        'user_agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko',
+                        'Referer' => 'http://example.com/test/',
+                        'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko',
                     ),
                 )
             ),
@@ -193,8 +193,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'request_line' => '-',
                     'response_code' => '408',
                     'request_headers' => array(
-                        'referer' => '-',
-                        'user_agent' => '-',
+                        'Referer' => '-',
+                        'User-Agent' => '-',
                     ),
                 )
             ),
@@ -215,8 +215,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_code' => '414',
                     'bytes_sent' => '540',
                     'request_headers' => array(
-                        'referer' => '-',
-                        'user_agent' => '-',
+                        'Referer' => '-',
+                        'User-Agent' => '-',
                     ),
                 )
             ),
@@ -240,8 +240,8 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_code' => '200',
                     'bytes_sent' => '126',
                     'request_headers' => array(
-                        'referer' => '-',
-                        'user_agent' => 'Apache/2.2.22 (Ubuntu) (internal dummy connection)',
+                        'Referer' => '-',
+                        'User-Agent' => 'Apache/2.2.22 (Ubuntu) (internal dummy connection)',
                     ),
                 )
             ),
@@ -283,7 +283,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 'Symfony2 BrowserKit',
                 array(
                     'request_headers' => array(
-                        'user_agent' => 'Symfony2 BrowserKit',
+                        'User-Agent' => 'Symfony2 BrowserKit',
                     ),
                 )
             ),
@@ -336,7 +336,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 'http://www.example.com/ -> /my-page/',
                 array(
                     'request_headers' => array(
-                        'referer' => 'http://www.example.com/',
+                        'Referer' => 'http://www.example.com/',
                     ),
                     'request_path' => '/my-page/',
                 )
@@ -411,36 +411,26 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 )
             ),
             array(
-                // Test for dangerous environment variables
-                '"%{DANGEROUS.VARIABLE}e"',
-                '"custom variable contents"',
-                array(
-                    'env_vars' => array(
-                        'DANGEROUS_VARIABLE' => 'custom variable contents',
-                    ),
-                )
-            ),
-            array(
                 // Test for response headers
                 '%{Content-Length}o',
                 '1553',
                 array(
                     'response_headers' => array(
-                        'Content_Length' => '1553',
+                        'Content-Length' => '1553',
                     ),
                 )
             ),
-       /*     array(
+            array(
                 // Test for response headers
                 '%{Content-Length}o "%{Content-Encoding}o"',
                 '1553 "gzip"',
                 array(
                     'response_headers' => array(
-                        'Content_Length' => '1553',
+                        'Content-Length' => '1553',
                         'Content-Encoding' => 'gzip',
                     ),
                 )
-            ),     */
+            ),
         );
     }
 

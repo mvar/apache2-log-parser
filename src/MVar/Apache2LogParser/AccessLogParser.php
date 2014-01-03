@@ -28,6 +28,11 @@ class AccessLogParser extends AbstractLineParser
     protected $pattern;
 
     /**
+     * @var KeysHolder
+     */
+    protected $keysHolder;
+
+    /**
      * Constructor
      *
      * @param string $format
@@ -57,13 +62,21 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
-        $arrayVariables = array('cookies', 'env_vars', 'request', 'request_headers', 'response_headers');
+        $search = 'request';
+        foreach ($result as $key => $data) {
+            // Put all variables to single array
+            if (($pos = strpos($key, "{$search}__")) === 0) {
+                $result[$search][substr($key, strlen($search) + 2)] = $data;
+                unset($result[$key]);
+            }
+        }
 
-        foreach ($arrayVariables as $search) {
+        foreach ($this->keysHolder->getNamespaces() as $search) {
             // Put all variables to single array
             foreach ($result as $key => $data) {
                 if (($pos = strpos($key, "{$search}__")) === 0) {
-                    $result[$search][substr($key, strlen($search) + 2)] = $data;
+                    $realKey = $this->keysHolder->get($search, substr($key, strlen($search) + 2));
+                    $result[$search][$realKey] = $data;
                     unset($result[$key]);
                 }
             }
@@ -81,6 +94,7 @@ class AccessLogParser extends AbstractLineParser
             return $this->pattern;
         }
 
+        $this->keysHolder = new KeysHolder();
         $pattern = $this->format;
 
         // Put simple patterns
@@ -171,30 +185,29 @@ class AccessLogParser extends AbstractLineParser
      */
     protected function getCallbackPatterns()
     {
+        $holder = $this->keysHolder;
+
         return array(
             // Header lines in the request sent to the server (e.g., User-Agent, Referer)
-            '/%\{([A-Za-z0-9]+(\-[A-Za-z0-9]+)*)\}i/' => function (array $matches) {
-                $header = strtolower(str_replace('-', '_', $matches[1]));
-                $pattern = $header == 'referer' ? '\S+' : '.+';
-                return "(?<request_headers__{$header}>{$pattern})";
+            '/%\{([A-Za-z0-9]+(\-[A-Za-z0-9]+)*)\}i/' => function (array $matches) use ($holder) {
+                $index = $holder->add('request_headers', $matches[1]);
+                $pattern = strcasecmp($matches[1], 'referer') == 0 ? '\S+' : '.+';
+                return "(?<request_headers__{$index}>{$pattern})";
             },
             // The contents of cookies in the request sent to the server
-            '/%\{(\S+)\}C/' => function (array $matches) {
-                $key = preg_replace('/([^a-z\d_]+)/i', '_', $matches[1]);
-                $key = trim($key, '_');
-                return "(?<cookies__{$key}>.+)";
+            '/%\{(\S+)\}C/' => function (array $matches) use ($holder) {
+                $index = $holder->add('cookies', $matches[1]);
+                return "(?<cookies__{$index}>.+)";
             },
             // The contents of the environment variable
-            '/%\{(\S+)\}e/' => function (array $matches) {
-                $key = preg_replace('/([^a-z\d_]+)/i', '_', $matches[1]);
-                $key = trim($key, '_');
-                return "(?<env_vars__{$key}>.+)";
+            '/%\{(\S+)\}e/' => function (array $matches) use ($holder) {
+                $index = $holder->add('env_vars', $matches[1]);
+                return "(?<env_vars__{$index}>.+)";
             },
             // Header lines in the response sent from the server
-            '/%\{(\S+)\}o/' => function (array $matches) {
-                $key = preg_replace('/([^a-z\d_]+)/i', '_', $matches[1]);
-                $key = trim($key, '_');
-                return "(?<response_headers__{$key}>.+)";
+            '/%\{(\S+)\}o/' => function (array $matches) use ($holder) {
+                $index = $holder->add('response_headers', $matches[1]);
+                return "(?<response_headers__{$index}>.+)";
             },
             // The canonical port of the server serving the request, or the server's actual port,
             // or the client's actual port
