@@ -57,7 +57,7 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
-        $arrayVariables = array('cookies', 'env_vars');
+        $arrayVariables = array('cookies', 'env_vars', 'request');
 
         foreach ($arrayVariables as $search) {
             // Put all variables to single array
@@ -142,7 +142,7 @@ class AccessLogParser extends AbstractLineParser
             // The query string
             '%q' => '(?<query_string>\?\S+|)',
             // First line of request
-            '%r' => '(?<request_line>(?<request_method>\w+) (?<request_path>\S+)( (?<request_protocol>\S+))?|-)',
+            '%r' => '(?<request_line>(?<request__method>\w+) (?<request__path>\S+)( (?<request__protocol>\S+))?|-)',
             // Bytes transferred (received and sent), including request and headers
             '%S' => '(?<bytes_transferred>\d+)',
             // The status of the original request

@@ -52,13 +52,17 @@ array (
   'identity' => '-',
   'remote_user' => '-',
   'time' => '2013-12-29T16:07:58+0200',
-  'request_method' => 'GET',
-  'request_path' => '/my-page/',
-  'request_protocol' => 'HTTP/1.1',
+  'request_line' => 'GET /my-page/ HTTP/1.1',
   'response_code' => '200',
   'bytes_sent' => '2490',
   'referer' => '-',
   'user_agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+  'request' =>
+  array (
+    'method' => 'GET',
+    'path' => '/my-page/',
+    'protocol' => 'HTTP/1.1',
+  ),
 )
 ```
 
@@ -88,7 +92,7 @@ use MVar\Apache2LogParser\LogIterator;
 $parser = new AccessLogParser(AccessLogParser::FORMAT_COMMON);
 
 foreach (new LogIterator('access.log', $parser) as $line => $data) {
-    printf("%s %s\n", $data['request_method'], $data['request_path']);
+    printf("%s %s\n", $data['request']['method'], $data['request']['path']);
 }
 ```
 
