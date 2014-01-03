@@ -61,3 +61,37 @@ array (
   'user_agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
 )
 ```
+
+### Iterate through Apache log file
+
+Let's say we have Apache log file `access.log` with following content:
+
+```
+192.168.25.1 - - [25/Jun/2012:14:26:05 -0700] "GET /favicon.ico HTTP/1.1" 404 498
+192.168.25.1 - - [25/Jun/2012:14:26:05 -0700] "GET /icons/blank.gif HTTP/1.1" 200 438
+```
+
+To parse whole log file line by line it needs only to create new iterator with
+file name and parser arguments:
+
+```php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use MVar\Apache2LogParser\AccessLogParser;
+use MVar\Apache2LogParser\LogIterator;
+
+$parser = new AccessLogParser(AccessLogParser::FORMAT_COMMON);
+
+foreach (new LogIterator('access.log', $parser) as $line => $data) {
+    printf("%s %s\n", $data['request_method'], $data['request_path']);
+}
+```
+
+The above example will output:
+
+```
+GET /favicon.ico
+GET /icons/blank.gif
+```
