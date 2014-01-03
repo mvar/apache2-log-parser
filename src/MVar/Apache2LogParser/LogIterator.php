@@ -93,6 +93,7 @@ class LogIterator implements \Iterator
         while ($buffer === '') {
             if (($buffer = fgets($this->getFileHandler())) === false) {
                 $this->currentLine = null;
+
                 return;
             }
             $buffer = trim($buffer);
