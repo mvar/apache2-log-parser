@@ -27,6 +27,16 @@ class KeysHolderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test for get() when nothing is set
+     */
+    public function testGetNull()
+    {
+        $holder = new KeysHolder();
+
+        $this->assertNull($holder->get('ns', 'test'));
+    }
+
+    /**
      * Test for getNamespaces()
      */
     public function testGetNamespaces()
@@ -44,6 +54,19 @@ class KeysHolderTest extends \PHPUnit_Framework_TestCase
             $namespaces[] = $namespace;
             $holder->add($namespace, $key);
         }
+
+        $this->assertEquals($namespaces, $holder->getNamespaces());
+    }
+
+    /**
+     * Test for registerNamespace()
+     */
+    public function testRegisterNamespace()
+    {
+        $namespaces = array('ns_1');
+
+        $holder = new KeysHolder();
+        $holder->registerNamespace($namespaces[0]);
 
         $this->assertEquals($namespaces, $holder->getNamespaces());
     }

@@ -36,13 +36,25 @@ class KeysHolder
      * @param string $namespace
      * @param int    $index
      *
-     * @return string
+     * @return string|null
      */
     public function get($namespace, $index)
     {
-        // TODO: check if exists
+        if (!isset($this->storage[$namespace][$index])) {
+            return null;
+        }
 
         return $this->storage[$namespace][$index];
+    }
+
+    /**
+     * Registers namespace
+     *
+     * @param string $namespace
+     */
+    public function registerNamespace($namespace)
+    {
+        $this->storage[$namespace] = array();
     }
 
     /**

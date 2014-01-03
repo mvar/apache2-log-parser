@@ -62,20 +62,12 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
-        $search = 'request';
-        foreach ($result as $key => $data) {
-            // Put all variables to single array
-            if (($pos = strpos($key, "{$search}__")) === 0) {
-                $result[$search][substr($key, strlen($search) + 2)] = $data;
-                unset($result[$key]);
-            }
-        }
-
         foreach ($this->keysHolder->getNamespaces() as $search) {
             // Put all variables to single array
             foreach ($result as $key => $data) {
                 if (($pos = strpos($key, "{$search}__")) === 0) {
-                    $realKey = $this->keysHolder->get($search, substr($key, strlen($search) + 2));
+                    $realKey = substr($key, strlen($search) + 2);
+                    $realKey = $this->keysHolder->get($search, $realKey) ?: $realKey;
                     $result[$search][$realKey] = $data;
                     unset($result[$key]);
                 }
@@ -122,6 +114,10 @@ class AccessLogParser extends AbstractLineParser
      */
     protected function getSimplePatterns()
     {
+        // Register "request" namespace in KeysHolder
+        // This allows to convert parsed variables to array
+        $this->keysHolder->registerNamespace('request');
+
         return array(
             // The percent sign
             '%%' => '%',
