@@ -65,7 +65,7 @@ class AccessLogParser extends AbstractLineParser
         foreach ($this->keysHolder->getNamespaces() as $search) {
             // Put all variables to single array
             foreach ($result as $key => $data) {
-                if (($pos = strpos($key, "{$search}__")) === 0) {
+                if (strpos($key, "{$search}__") === 0) {
                     $realKey = substr($key, strlen($search) + 2);
                     $realKey = $this->keysHolder->get($search, $realKey) ?: $realKey;
                     $result[$search][$realKey] = $data;
