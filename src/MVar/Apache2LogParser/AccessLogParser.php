@@ -142,7 +142,7 @@ class AccessLogParser extends AbstractLineParser
             // The query string
             '%q' => '(?<query_string>\?\S+|)',
             // First line of request
-            '%r' => '((?<request_method>\w+) (?<request_path>\S+)( (?<request_protocol>\S+))?|-)',
+            '%r' => '(?<request_line>(?<request_method>\w+) (?<request_path>\S+)( (?<request_protocol>\S+))?|-)',
             // Bytes transferred (received and sent), including request and headers
             '%S' => '(?<bytes_transferred>\d+)',
             // The status of the original request
