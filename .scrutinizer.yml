@@ -20,18 +20,12 @@ tools:
         enabled: true
         config:
             level: all
-            fixers:
-                trailing_spaces: true
-                short_tag: true
-                php_closing_tag: true
-                extra_empty_lines: true
-                eof_ending: true
         filter:
             paths: ["src/*", "tests/*"]
     php_mess_detector:
         enabled: true
         filter:
-            paths: ["src/*"]
+            paths: ["src/*", "tests/*"]
     php_pdepend:
         enabled: true
         excluded_dirs: ["tests", "vendor"]
