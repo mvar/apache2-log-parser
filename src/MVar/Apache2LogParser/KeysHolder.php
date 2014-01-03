@@ -13,7 +13,7 @@ class KeysHolder
     /**
      * @var array
      */
-    protected $storage;
+    protected $storage = array();
 
     /**
      * Stores key to local storage and returns it's index
