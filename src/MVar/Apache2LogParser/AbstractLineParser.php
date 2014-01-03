@@ -8,6 +8,9 @@
 
 namespace MVar\Apache2LogParser;
 
+use MVar\Apache2LogParser\Exception\NoMatchesException;
+use MVar\Apache2LogParser\Exception\ParserException;
+
 abstract class AbstractLineParser implements LineParserInterface
 {
     /**

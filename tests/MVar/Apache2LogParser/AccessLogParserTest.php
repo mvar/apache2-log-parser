@@ -54,7 +54,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
      * @param string $logLine
      *
      * @dataProvider getTestParseLineNoMatchesData()
-     * @expectedException \MVar\Apache2LogParser\NoMatchesException
+     * @expectedException \MVar\Apache2LogParser\Exception\NoMatchesException
      * @expectedExceptionMessage line does not match
      */
     public function testParseLineNoMatches($format, $logLine)

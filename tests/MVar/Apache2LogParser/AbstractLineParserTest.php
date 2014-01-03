@@ -28,7 +28,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for parseLine() in case of exception when passed incorrect argument
      *
-     * @expectedException \MVar\Apache2LogParser\ParserException
+     * @expectedException \MVar\Apache2LogParser\Exception\ParserException
      * @expectedExceptionMessage must be a string
      */
     public function testParseLineExceptionArgument()
@@ -40,7 +40,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for parseLine() in case of exception when matcher fails
      *
-     * @expectedException \MVar\Apache2LogParser\ParserException
+     * @expectedException \MVar\Apache2LogParser\Exception\ParserException
      * @expectedExceptionMessage Matcher failure
      */
     public function testParseLineExceptionMatcherFailure()
@@ -54,7 +54,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for parseLine() in case of exception when no matches were found
      *
-     * @expectedException \MVar\Apache2LogParser\NoMatchesException
+     * @expectedException \MVar\Apache2LogParser\Exception\NoMatchesException
      * @expectedExceptionMessage line does not match
      */
     public function testParseLineExceptionNoMatches()

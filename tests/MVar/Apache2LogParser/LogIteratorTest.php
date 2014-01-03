@@ -8,6 +8,8 @@
 
 namespace MVar\Apache2LogParser;
 
+use MVar\Apache2LogParser\Exception\NoMatchesException;
+
 class LogIteratorTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -72,7 +74,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for iterator in case of file handler exception
      *
-     * @expectedException \MVar\Apache2LogParser\ParserException
+     * @expectedException \MVar\Apache2LogParser\Exception\ParserException
      * @expectedExceptionMessage Can not open log file
      */
     public function testIteratorFileException()

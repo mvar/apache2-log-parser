@@ -6,8 +6,8 @@
  * file that was distributed with this source code.
  */
 
-namespace MVar\Apache2LogParser;
+namespace MVar\Apache2LogParser\Exception;
 
-class NoMatchesException extends ParserException
+class ParserException extends \Exception
 {
 }

@@ -8,6 +8,8 @@
 
 namespace MVar\Apache2LogParser;
 
+use MVar\Apache2LogParser\Exception\ParserException;
+
 interface LineParserInterface
 {
     /**
