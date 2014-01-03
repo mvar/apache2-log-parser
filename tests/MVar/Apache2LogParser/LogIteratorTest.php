@@ -28,6 +28,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     public function testIterator()
     {
         $parser = $this->getParser();
+        $expectedData = 'parsed_line';
 
         // Test if parser was called twice
         $parser->expects($this->exactly(2))
@@ -36,8 +37,8 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
 
         $iterator = new LogIterator(__DIR__ . '/Fixtures/access.log', $parser);
 
-        foreach ($iterator as $data) {
-            // Just iterate
+        foreach ($iterator as $line => $data) {
+            $this->assertTrue(is_string($line) && $data === $expectedData);
         }
     }
 
