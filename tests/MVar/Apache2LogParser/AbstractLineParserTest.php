@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace MVar\Apache2LogParser\Tests;
+namespace MVar\Apache2LogParser;
 
 use MVar\Apache2LogParser\AbstractLineParser;
 
