@@ -63,8 +63,8 @@ array (
   ),
   'request_headers' =>
   array (
-    'referer' => '-',
-    'user_agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+    'Referer' => '-',
+    'User-Agent' => 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
   ),
 )
 ```
