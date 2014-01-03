@@ -36,7 +36,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
 
         $iterator = new LogIterator(__DIR__ . '/Fixtures/access.log', $parser);
 
-        foreach ($iterator as $line => $data) {
+        foreach ($iterator as $data) {
             // Just iterate
         }
     }
