@@ -8,6 +8,9 @@
 
 namespace MVar\Apache2LogParser;
 
+/**
+ * @covers \MVar\Apache2LogParser\AccessLogParser
+ */
 class AccessLogParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
