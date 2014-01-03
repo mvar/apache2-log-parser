@@ -6,12 +6,7 @@
  * file that was distributed with this source code.
  */
 
-
 namespace MVar\Apache2LogParser;
-
-use MVar\Apache2LogParser\LineParserInterface;
-use MVar\Apache2LogParser\LogIterator;
-use MVar\Apache2LogParser\NoMatchesException;
 
 class LogIteratorTest extends \PHPUnit_Framework_TestCase
 {

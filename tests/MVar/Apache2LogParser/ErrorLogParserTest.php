@@ -8,8 +8,6 @@
 
 namespace MVar\Apache2LogParser;
 
-use MVar\Apache2LogParser\ErrorLogParser;
-
 class ErrorLogParserTest extends \PHPUnit_Framework_TestCase
 {
     /**

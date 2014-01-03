@@ -8,8 +8,6 @@
 
 namespace MVar\Apache2LogParser;
 
-use MVar\Apache2LogParser\AccessLogParser;
-
 class AccessLogParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
