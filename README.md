@@ -4,6 +4,7 @@ Apache2 access and error logs parser
 [![Latest Stable Version](https://poser.pugx.org/mvar/apache2-log-parser/v/stable.png)](https://packagist.org/packages/mvar/apache2-log-parser)
 [![Build Status](https://travis-ci.org/mvar/apache2-log-parser.png?branch=master)](https://travis-ci.org/mvar/apache2-log-parser)
 [![Code Coverage](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/badges/coverage.png?s=c4f63101c2d2877a2a0623b3a75ee18b67636b97)](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/badges/quality-score.png?s=2eb88f010261c2bc70e969cb98107a57342b3543)](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/)
 
 Installation
 ---
