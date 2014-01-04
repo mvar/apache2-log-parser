@@ -147,6 +147,8 @@ class AccessLogParser extends AbstractLineParser
             '%m' => '(?<request_method>[A-Za-z]+)',
             // Bytes sent, including headers
             '%O' => '(?<bytes_sent>\d+)',
+            // The process ID of the child that serviced the request
+            '%P' => '(?<process_id>\S+)',
             // The canonical port of the server serving the request
             '%p' => '(?<server_port>\d+)',
             // The query string
@@ -216,6 +218,10 @@ class AccessLogParser extends AbstractLineParser
                 $index = $holder->add('response_headers', $matches[1]);
 
                 return "(?<response_headers__{$index}>.+)";
+            },
+            // The process ID or thread ID of the child that serviced the request
+            '/%\{(pid|tid|hextid)\}P/' => function (array $matches) {
+                return '(?<' . $matches[1] . '>\S+)';
             },
             // The canonical port of the server serving the request, or the server's actual port,
             // or the client's actual port

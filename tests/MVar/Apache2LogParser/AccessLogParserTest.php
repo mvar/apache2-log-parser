@@ -454,6 +454,17 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'server_name' => 'www.domain.tld',
                 )
             ),
+            array(
+                // Test for process and thread ID
+                '%P %{pid}P %{tid}P %{hextid}P',
+                '229 12 34 56',
+                array(
+                    'process_id' => '229',
+                    'pid' => '12',
+                    'tid' => '34',
+                    'hextid' => '56',
+                )
+            ),
         );
     }
 
