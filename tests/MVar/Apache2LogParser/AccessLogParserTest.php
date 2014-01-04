@@ -436,7 +436,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 // Test for module notes
-                '%{outstream}n\/%{instream}n \(%{ratio}n%%\)', // TODO: remove special chars escaping
+                '%{outstream}n/%{instream}n (%{ratio}n%%)',
                 '512/1024 (50%)',
                 array(
                     'mod_vars' => array(
@@ -489,6 +489,20 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'response_handler' => 'application/x-httpd-php',
                 )
             ),
+            // Check if format string quoting works correctly
+            array('%z/%z', '%z/%z', array()),
+            array('{%{test}z}', '{%{test}z}', array()),
+            array('{%{test}z}*', '{%{test}z}*', array()),
+            array('{%{test}z}/%z', '{%{test}z}/%z', array()),
+            array('{%{test}z}/%z-%>z', '{%{test}z}/%z-%>z', array()),
+            array('{%{test}z}/%z-(%>z)', '{%{test}z}/%z-(%>z)', array()),
+            // Also do not quote directives with modifiers
+            array('%>{test}z', '%>{test}z', array()),
+            array('%<{test}z', '%<{test}z', array()),
+            array('%200{test}z', '%200{test}z', array()),
+            array('%!200{test}z', '%!200{test}z', array()),
+            array('%200,201{test}z', '%200,201{test}z', array()),
+            array('%!200,201{test}z', '%!200,201{test}z', array()),
         );
     }
 

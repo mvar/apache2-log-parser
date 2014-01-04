@@ -87,7 +87,7 @@ class AccessLogParser extends AbstractLineParser
         }
 
         $this->keysHolder = new KeysHolder();
-        $pattern = $this->format;
+        $pattern = $this->getQuotedFormatString();
 
         // Put simple patterns
         $pattern = str_replace(
@@ -104,6 +104,32 @@ class AccessLogParser extends AbstractLineParser
         $this->pattern = "/^{$pattern}$/";
 
         return $this->pattern;
+    }
+
+    /**
+     * Quotes characters which are not included in log format directives
+     * and returns quoted format string
+     *
+     * @return string
+     */
+    protected function getQuotedFormatString()
+    {
+        // Valid pattern of log format directives
+        $validPattern = '%(\!?[2-5]\d\d(\,[2-5]\d\d)*)?(\<|\>)?(\{[^\}]*\})?[a-z]';
+
+        $pattern = preg_replace_callback(
+            '/(?<before>' . $validPattern . '?)?(?<match>.+?)(?<after>' . $validPattern . ')?/i',
+            function (array $matches) {
+                $before = isset($matches['before']) ? $matches['before'] : '';
+                $after = isset($matches['after']) ? $matches['after'] : '';
+                $match = preg_quote($matches['match'], '/');
+
+                return "{$before}{$match}{$after}";
+            },
+            $this->format
+        );
+
+        return $pattern;
     }
 
     /**
