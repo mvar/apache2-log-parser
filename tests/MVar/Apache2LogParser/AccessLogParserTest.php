@@ -228,7 +228,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 '127.0.1.1:80 127.0.0.1 - - [26/Jun/2012:10:41:10 -0700] "OPTIONS * HTTP/1.0" 200 126 "-" ' .
                     '"Apache/2.2.22 (Ubuntu) (internal dummy connection)"',
                 array(
-                    'server_name' => '127.0.1.1',
+                    'canonical_server_name' => '127.0.1.1',
                     'server_port' => '80',
                     'remote_host' => '127.0.0.1',
                     'identity' => '-',
@@ -435,7 +435,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 )
             ),
             array(
-                // Test for
+                // Test for module notes
                 '%{outstream}n\/%{instream}n \(%{ratio}n%%\)', // TODO: remove special chars escaping
                 '512/1024 (50%)',
                 array(
@@ -444,6 +444,14 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                         'instream' => '1024',
                         'ratio' => '50',
                     ),
+                )
+            ),
+            array(
+                // Test for the server name
+                '%V',
+                'www.domain.tld',
+                array(
+                    'server_name' => 'www.domain.tld',
                 )
             ),
         );
