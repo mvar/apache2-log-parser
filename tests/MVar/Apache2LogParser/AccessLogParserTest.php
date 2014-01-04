@@ -455,6 +455,14 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 )
             ),
             array(
+                // Test for number of keep-alive requests handled on this connection
+                '%k',
+                '2',
+                array(
+                    'keepalive_requests' => '2',
+                )
+            ),
+            array(
                 // Test for process and thread ID
                 '%P %{pid}P %{tid}P %{hextid}P',
                 '229 12 34 56',

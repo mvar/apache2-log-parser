@@ -141,6 +141,8 @@ class AccessLogParser extends AbstractLineParser
             '%h' => '(?<remote_host>\S+)',
             // Bytes received, including request and headers
             '%I' => '(?<bytes_received>\d+)',
+            // Number of keep-alive requests handled on this connection
+            '%k' => '(?<keepalive_requests>\d+)',
             // Remote logname
             '%l' => '(?<identity>\S+)',
             // The request method
