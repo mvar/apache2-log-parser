@@ -434,6 +434,18 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     ),
                 )
             ),
+            array(
+                // Test for
+                '%{outstream}n\/%{instream}n \(%{ratio}n%%\)', // TODO: remove special chars escaping
+                '512/1024 (50%)',
+                array(
+                    'mod_vars' => array(
+                        'outstream' => '512',
+                        'instream' => '1024',
+                        'ratio' => '50',
+                    ),
+                )
+            ),
         );
     }
 

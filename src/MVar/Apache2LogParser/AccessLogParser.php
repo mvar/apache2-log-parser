@@ -203,6 +203,12 @@ class AccessLogParser extends AbstractLineParser
 
                 return "(?<env_vars__{$index}>.+)";
             },
+            // The contents of notes from another modules
+            '/%\{([^\s\}]+)\}n/' => function (array $matches) use ($holder) {
+                $index = $holder->add('mod_vars', $matches[1]);
+
+                return "(?<mod_vars__{$index}>.+)";
+            },
             // Header lines in the response sent from the server
             '/%\{(\S+)\}o/' => function (array $matches) use ($holder) {
                 $index = $holder->add('response_headers', $matches[1]);
