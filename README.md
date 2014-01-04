@@ -1,11 +1,15 @@
 Apache2 access and error logs parser
 ====================================
 
+[![Latest Stable Version](https://poser.pugx.org/mvar/apache2-log-parser/v/stable.png)](https://packagist.org/packages/mvar/apache2-log-parser)
 [![Build Status](https://travis-ci.org/mvar/apache2-log-parser.png?branch=master)](https://travis-ci.org/mvar/apache2-log-parser)
 [![Code Coverage](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/badges/coverage.png?s=c4f63101c2d2877a2a0623b3a75ee18b67636b97)](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/)
 
 Installation
 ---
+
+This library can be found on [Packagist](https://packagist.org/packages/mvar/apache2-log-parser).
+The recommended way to install this is through [Composer](https://getcomposer.org).
 
 Add package to your `composer.json`:
 
@@ -17,11 +21,19 @@ Add package to your `composer.json`:
 }
 ```
 
-And run Composer to update your packages:
+And run Composer to install new packages:
 
 ```bash
-php composer.phar update
+php composer.phar install
 ```
+
+Features
+--------
+
+ - Apache2 log lines parsing
+     - Access log
+     - Error log (currently, for Apache 2.2 and older)
+ - Log files iterator
 
 Usage
 -----
