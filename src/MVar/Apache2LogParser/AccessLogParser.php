@@ -143,6 +143,8 @@ class AccessLogParser extends AbstractLineParser
             '%I' => '(?<bytes_received>\d+)',
             // Number of keep-alive requests handled on this connection
             '%k' => '(?<keepalive_requests>\d+)',
+            // The request log ID from the error log
+            '%L' => '(?<log_id>\S+)',
             // Remote logname
             '%l' => '(?<identity>\S+)',
             // The request method
@@ -155,6 +157,8 @@ class AccessLogParser extends AbstractLineParser
             '%p' => '(?<server_port>\d+)',
             // The query string
             '%q' => '(?<query_string>\?\S+|)',
+            // The handler generating the response
+            '%R' => '(?<response_handler>\S+)',
             // First line of request
             '%r' => '(?<request_line>(?<request__method>\w+) (?<request__path>\S+)( (?<request__protocol>\S+))?|-)',
             // Bytes transferred (received and sent), including request and headers
@@ -162,7 +166,7 @@ class AccessLogParser extends AbstractLineParser
             // The status of the original request
             '%s' => '(?<original_status_code>[2-5]\d\d)',
             // Status of the final request
-            '%>s' => '(?<response_code>[2-5]\d\d)',
+            '%>s' => '(?<response_code>[2-5]\d\d)', // TODO: check after modifiers support implementation
             // The time taken to serve the request, in seconds
             '%T' => '(?<request_time_s>\d+)',
             // Time the request was received

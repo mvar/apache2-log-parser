@@ -473,6 +473,22 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'hextid' => '56',
                 )
             ),
+            array(
+                // Test for the request log ID
+                '%L',
+                '55',
+                array(
+                    'log_id' => '55',
+                )
+            ),
+            array(
+                // Test for the handler generating the response
+                '%R',
+                'application/x-httpd-php',
+                array(
+                    'response_handler' => 'application/x-httpd-php',
+                )
+            ),
         );
     }
 
