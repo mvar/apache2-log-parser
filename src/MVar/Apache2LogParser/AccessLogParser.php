@@ -185,32 +185,32 @@ class AccessLogParser extends AbstractLineParser
 
         return array(
             // Header lines in the request sent to the server (e.g., User-Agent, Referer)
-            '/%\{([A-Za-z0-9]+(\-[A-Za-z0-9]+)*)\}i/' => function (array $matches) use ($holder) {
+            '/%\{([^\}]+)\}i/' => function (array $matches) use ($holder) {
                 $index = $holder->add('request_headers', $matches[1]);
                 $pattern = strcasecmp($matches[1], 'referer') == 0 ? '\S+' : '.+';
 
                 return "(?<request_headers__{$index}>{$pattern})";
             },
             // The contents of cookies in the request sent to the server
-            '/%\{(\S+)\}C/' => function (array $matches) use ($holder) {
+            '/%\{([^\}]+)\}C/' => function (array $matches) use ($holder) {
                 $index = $holder->add('cookies', $matches[1]);
 
                 return "(?<cookies__{$index}>.+)";
             },
             // The contents of the environment variable
-            '/%\{(\S+)\}e/' => function (array $matches) use ($holder) {
+            '/%\{([^\}]+)\}e/' => function (array $matches) use ($holder) {
                 $index = $holder->add('env_vars', $matches[1]);
 
                 return "(?<env_vars__{$index}>.+)";
             },
             // The contents of notes from another modules
-            '/%\{([^\s\}]+)\}n/' => function (array $matches) use ($holder) {
+            '/%\{([^\}]+)\}n/' => function (array $matches) use ($holder) {
                 $index = $holder->add('mod_vars', $matches[1]);
 
                 return "(?<mod_vars__{$index}>.+)";
             },
             // Header lines in the response sent from the server
-            '/%\{(\S+)\}o/' => function (array $matches) use ($holder) {
+            '/%\{([^\}]+)\}o/' => function (array $matches) use ($holder) {
                 $index = $holder->add('response_headers', $matches[1]);
 
                 return "(?<response_headers__{$index}>.+)";
