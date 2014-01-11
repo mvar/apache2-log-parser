@@ -224,6 +224,30 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 )
             ),
             array(
+                AccessLogParser::FORMAT_COMBINED,
+                // When no bytes were sent
+                '74.86.158.106 - - [09/Jan/2014:04:11:40 -0800] "HEAD / HTTP/1.1" 200 - "-" ' .
+                    '"Mozilla/5.0+(compatible; UptimeRobot/2.0; http://www.uptimerobot.com/)"',
+                array(
+                    'remote_host' => '74.86.158.106',
+                    'identity' => '-',
+                    'remote_user' => '-',
+                    'time' => '2014-01-09T04:11:40-0800',
+                    'request_line' => 'HEAD / HTTP/1.1',
+                    'request' => array(
+                        'method' => 'HEAD',
+                        'path' => '/',
+                        'protocol' => 'HTTP/1.1',
+                    ),
+                    'response_code' => '200',
+                    'bytes_sent' => '-',
+                    'request_headers' => array(
+                        'Referer' => '-',
+                        'User-Agent' => 'Mozilla/5.0+(compatible; UptimeRobot/2.0; http://www.uptimerobot.com/)',
+                    ),
+                )
+            ),
+            array(
                 AccessLogParser::FORMAT_VHOST_COMBINED,
                 '127.0.1.1:80 127.0.0.1 - - [26/Jun/2012:10:41:10 -0700] "OPTIONS * HTTP/1.0" 200 126 "-" ' .
                     '"Apache/2.2.22 (Ubuntu) (internal dummy connection)"',

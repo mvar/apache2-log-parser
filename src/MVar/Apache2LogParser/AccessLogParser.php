@@ -176,7 +176,7 @@ class AccessLogParser extends AbstractLineParser
             // The request method
             '%m' => '(?<request_method>[A-Za-z]+)',
             // Bytes sent, including headers
-            '%O' => '(?<bytes_sent>\d+)',
+            '%O' => '(?<bytes_sent>\d+|\-)',
             // The process ID of the child that serviced the request
             '%P' => '(?<process_id>\S+)',
             // The canonical port of the server serving the request
