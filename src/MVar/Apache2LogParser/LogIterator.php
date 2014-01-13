@@ -149,7 +149,7 @@ class LogIterator implements \Iterator
      */
     public function valid()
     {
-        return !feof($this->getFileHandler());
+        return !feof($this->getFileHandler()) || $this->currentLine;
     }
 
     /**

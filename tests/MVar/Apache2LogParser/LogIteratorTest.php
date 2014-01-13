@@ -52,7 +52,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
         $expectedData = 'parsed_line';
 
         // Test if parser was called 4 times
-        $parser->expects($this->exactly(3))
+        $parser->expects($this->exactly(4))
             ->method('parseLine')
             ->will($this->returnValue($expectedData));
 

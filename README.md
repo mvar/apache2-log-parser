@@ -119,3 +119,9 @@ The above example will output:
 GET /favicon.ico
 GET /icons/blank.gif
 ```
+
+It is also possible to parse compressed files by adding stream wrapper before file name:
+
+```php
+$logFile = 'compress.zlib://file:///path/to/log.gz';
+```
