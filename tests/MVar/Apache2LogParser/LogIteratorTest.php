@@ -38,7 +38,29 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
         $iterator = new LogIterator(__DIR__ . '/Fixtures/access.log', $parser);
 
         foreach ($iterator as $line => $data) {
-            $this->assertTrue(is_string($line) && $data === $expectedData);
+            $this->assertTrue(is_string($line));
+            $this->assertEquals($data, $expectedData);
+        }
+    }
+
+    /**
+     * Test for iterator with gzipped file
+     */
+    public function testIteratorGzip()
+    {
+        $parser = $this->getParser();
+        $expectedData = 'parsed_line';
+
+        // Test if parser was called 4 times
+        $parser->expects($this->exactly(3))
+            ->method('parseLine')
+            ->will($this->returnValue($expectedData));
+
+        $iterator = new LogIterator('compress.zlib://file://' . __DIR__ . '/Fixtures/access_compressed.gz', $parser);
+
+        foreach ($iterator as $line => $data) {
+            $this->assertTrue(is_string($line));
+            $this->assertEquals($data, $expectedData);
         }
     }
 
