@@ -52,11 +52,7 @@ class AccessLogParser extends AbstractLineParser
         $result = array_intersect_key($matches, array_flip($filtered));
         $result = array_filter($result);
 
-        if (isset($result['time'])) {
-            // Convert date format to ISO
-            $date = new \DateTime($result['time']);
-            $result['time'] = $date->format(\DateTime::ISO8601);
-        }
+        $this->formatTime($result);
 
         if (isset($result['response_body_size']) && $result['response_body_size'] == '-') {
             $result['response_body_size'] = 0;
@@ -75,6 +71,19 @@ class AccessLogParser extends AbstractLineParser
         }
 
         return $result;
+    }
+
+    /**
+     * Convert date format to ISO
+     *
+     * @param array $result
+     */
+    protected function formatTime(array &$result)
+    {
+        if (isset($result['time'])) {
+            $date = new \DateTime($result['time']);
+            $result['time'] = $date->format(\DateTime::ISO8601);
+        }
     }
 
     /**
