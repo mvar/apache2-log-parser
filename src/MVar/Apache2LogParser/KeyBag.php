@@ -9,7 +9,7 @@
 
 namespace MVar\Apache2LogParser;
 
-class KeysHolder
+class KeyBag
 {
     /**
      * @var array

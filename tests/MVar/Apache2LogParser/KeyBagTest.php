@@ -9,7 +9,7 @@
 
 namespace MVar\Apache2LogParser;
 
-class KeysHolderTest extends \PHPUnit_Framework_TestCase
+class KeyBagTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test for add() and get() methods
@@ -21,7 +21,7 @@ class KeysHolderTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddAndGet($namespace, $key)
     {
-        $holder = new KeysHolder();
+        $holder = new KeyBag();
         $index = $holder->add($namespace, $key);
 
         $this->assertEquals($key, $holder->get($namespace, $index));
@@ -32,7 +32,7 @@ class KeysHolderTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNull()
     {
-        $holder = new KeysHolder();
+        $holder = new KeyBag();
 
         $this->assertNull($holder->get('ns', 'test'));
     }
@@ -47,7 +47,7 @@ class KeysHolderTest extends \PHPUnit_Framework_TestCase
             array('namespace_2', 'key_21'),
         );
 
-        $holder = new KeysHolder();
+        $holder = new KeyBag();
         $namespaces = array();
 
         foreach ($data as $row) {
@@ -66,7 +66,7 @@ class KeysHolderTest extends \PHPUnit_Framework_TestCase
     {
         $namespaces = array('ns_1');
 
-        $holder = new KeysHolder();
+        $holder = new KeyBag();
         $holder->registerNamespace($namespaces[0]);
 
         $this->assertEquals($namespaces, $holder->getNamespaces());

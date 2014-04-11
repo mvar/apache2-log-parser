@@ -29,9 +29,9 @@ class AccessLogParser extends AbstractLineParser
     protected $pattern;
 
     /**
-     * @var KeysHolder
+     * @var KeyBag
      */
-    protected $keysHolder;
+    protected $keyBag;
 
     /**
      * Constructor
@@ -59,12 +59,12 @@ class AccessLogParser extends AbstractLineParser
             $result['response_body_size'] = 0;
         }
 
-        foreach ($this->keysHolder->getNamespaces() as $search) {
+        foreach ($this->keyBag->getNamespaces() as $search) {
             // Put all variables to single array
             foreach ($result as $key => $data) {
                 if (strpos($key, "{$search}__") === 0) {
                     $realKey = substr($key, strlen($search) + 2);
-                    $realKey = $this->keysHolder->get($search, $realKey) ?: $realKey;
+                    $realKey = $this->keyBag->get($search, $realKey) ?: $realKey;
                     $result[$search][$realKey] = $data;
                     unset($result[$key]);
                 }
@@ -96,7 +96,7 @@ class AccessLogParser extends AbstractLineParser
             return $this->pattern;
         }
 
-        $this->keysHolder = new KeysHolder();
+        $this->keyBag = new KeyBag();
         $pattern = $this->getQuotedFormatString();
 
         // Put simple patterns
@@ -150,9 +150,9 @@ class AccessLogParser extends AbstractLineParser
      */
     protected function getSimplePatterns()
     {
-        // Register "request" namespace in KeysHolder
+        // Register "request" namespace in KeyBag
         // This allows to convert parsed variables to array
-        $this->keysHolder->registerNamespace('request');
+        $this->keyBag->registerNamespace('request');
 
         return array(
             // The percent sign
@@ -227,7 +227,7 @@ class AccessLogParser extends AbstractLineParser
      */
     protected function getCallbackPatterns()
     {
-        $holder = $this->keysHolder;
+        $holder = $this->keyBag;
 
         return array(
             // Header lines in the request sent to the server (e.g., User-Agent, Referer)
