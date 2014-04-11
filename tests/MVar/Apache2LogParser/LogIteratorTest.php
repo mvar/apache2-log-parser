@@ -24,40 +24,24 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for iterator
+     * Test for log iterator
+     *
+     * @param string $logfile
+     * @param int    $rowsCount
+     *
+     * @dataProvider getTestIteratorData()
      */
-    public function testIterator()
+    public function testIterator($logfile, $rowsCount)
     {
         $parser = $this->getParser();
         $expectedData = 'parsed_line';
 
-        // Test if parser was called twice
-        $parser->expects($this->exactly(2))
-            ->method('parseLine')
-            ->will($this->returnValue('parsed_line'));
-
-        $iterator = new LogIterator(__DIR__ . '/Fixtures/access.log', $parser);
-
-        foreach ($iterator as $line => $data) {
-            $this->assertTrue(is_string($line));
-            $this->assertEquals($data, $expectedData);
-        }
-    }
-
-    /**
-     * Test for iterator with gzipped file
-     */
-    public function testIteratorGzip()
-    {
-        $parser = $this->getParser();
-        $expectedData = 'parsed_line';
-
-        // Test if parser was called 4 times
-        $parser->expects($this->exactly(4))
+        // Test if parser was called as many times as expected
+        $parser->expects($this->exactly($rowsCount))
             ->method('parseLine')
             ->will($this->returnValue($expectedData));
 
-        $iterator = new LogIterator('compress.zlib://file://' . __DIR__ . '/Fixtures/access_compressed.gz', $parser);
+        $iterator = new LogIterator($logfile, $parser);
 
         foreach ($iterator as $line => $data) {
             $this->assertTrue(is_string($line));
@@ -105,5 +89,20 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     {
         $iterator = new LogIterator(__DIR__ . '/Fixtures/non_existing_file.log', $this->getParser());
         $iterator->rewind();
+    }
+
+    /**
+     * Data provider for testIterator()
+     *
+     * @return array[]
+     */
+    public function getTestIteratorData()
+    {
+        return array(
+            // Simple log
+            array(__DIR__ . '/Fixtures/access.log', 2),
+            // Compressed log
+            array('compress.zlib://file://' . __DIR__ . '/Fixtures/access_compressed.gz', 4),
+        );
     }
 }
