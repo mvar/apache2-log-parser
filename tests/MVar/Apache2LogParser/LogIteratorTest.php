@@ -39,7 +39,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
         // Test if parser was called as many times as expected
         $parser->expects($this->exactly($rowsCount))
             ->method('parseLine')
-            ->will($this->returnValue($expectedData));
+            ->willReturn($expectedData);
 
         $iterator = new LogIterator($logfile, $parser);
 

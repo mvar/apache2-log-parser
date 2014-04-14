@@ -47,7 +47,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     public function testParseLineExceptionMatcherFailure()
     {
         $parser = $this->getParser();
-        $parser->expects($this->once())->method('getPattern')->will($this->returnValue('invalid_regexp_pattern'));
+        $parser->expects($this->once())->method('getPattern')->willReturn('invalid_regexp_pattern');
 
         $parser->parseLine('test string');
     }
@@ -61,7 +61,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     public function testParseLineExceptionNoMatches()
     {
         $parser = $this->getParser();
-        $parser->expects($this->once())->method('getPattern')->will($this->returnValue('/\d+/'));
+        $parser->expects($this->once())->method('getPattern')->willReturn('/\d+/');
 
         $parser->parseLine('test string');
     }
@@ -72,7 +72,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     public function testParseLine()
     {
         $parser = $this->getParser();
-        $parser->expects($this->once())->method('getPattern')->will($this->returnValue('/.*/'));
+        $parser->expects($this->once())->method('getPattern')->willReturn('/.*/');
 
         $parser->parseLine('test string');
     }
