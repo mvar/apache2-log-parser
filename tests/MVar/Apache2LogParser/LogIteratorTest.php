@@ -98,11 +98,16 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
      */
     public function getTestIteratorData()
     {
-        return array(
-            // Simple log
-            array(__DIR__ . '/Fixtures/access.log', 2),
-            // Compressed log
-            array('compress.zlib://file://' . __DIR__ . '/Fixtures/access_compressed.gz', 4),
-        );
+        $data = array();
+
+        // Simple log
+        $data[] = array(__DIR__ . '/Fixtures/access.log', 2);
+
+        // Compressed log (do not run this on HHVM because compress.zlib wrapper is not supported there)
+        if (!defined('HHVM_VERSION')) {
+            $data[] = array('compress.zlib://file://' . __DIR__ . '/Fixtures/access_compressed.gz', 4);
+        }
+
+        return $data;
     }
 }
