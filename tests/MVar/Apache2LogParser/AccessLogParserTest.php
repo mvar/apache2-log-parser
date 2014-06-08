@@ -270,6 +270,29 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                 )
             ),
             array(
+                AccessLogParser::FORMAT_COMBINED,
+                '12.34.56.78 - - [20/May/2014:17:21:57 -0700] "GET /test/ HTTP/1.1" 200 1680 ' .
+                    '"http://search.yahoo.com/search?p=what color" "Mozilla/5.0"',
+                array(
+                    'remote_host' => '12.34.56.78',
+                    'identity' => '-',
+                    'remote_user' => '-',
+                    'time' => '2014-05-20T17:21:57-0700',
+                    'request_line' => 'GET /test/ HTTP/1.1',
+                    'request' => array(
+                        'method' => 'GET',
+                        'path' => '/test/',
+                        'protocol' => 'HTTP/1.1',
+                    ),
+                    'response_code' => '200',
+                    'bytes_sent' => '1680',
+                    'request_headers' => array(
+                        'User-Agent' => 'Mozilla/5.0',
+                        'Referer' => 'http://search.yahoo.com/search?p=what color',
+                    ),
+                )
+            ),
+            array(
                 AccessLogParser::FORMAT_VHOST_COMBINED,
                 '127.0.1.1:80 127.0.0.1 - - [26/Jun/2012:10:41:10 -0700] "OPTIONS * HTTP/1.0" 200 126 "-" ' .
                     '"Apache/2.2.22 (Ubuntu) (internal dummy connection)"',

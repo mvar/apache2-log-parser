@@ -233,7 +233,7 @@ class AccessLogParser extends AbstractLineParser
             // Header lines in the request sent to the server (e.g., User-Agent, Referer)
             '/%\{([^\}]+)\}i/' => function (array $matches) use ($holder) {
                 $index = $holder->add('request_headers', $matches[1]);
-                $pattern = strcasecmp($matches[1], 'referer') == 0 ? '\S*' : '.+';
+                $pattern = strcasecmp($matches[1], 'referer') == 0 ? '[^\"]*' : '.+';
 
                 return "(?<request_headers__{$index}>{$pattern})";
             },
