@@ -10,22 +10,10 @@ Installation
 ---
 
 This library can be found on [Packagist](https://packagist.org/packages/mvar/apache2-log-parser).
-The recommended way to install this is through [Composer](https://getcomposer.org).
-
-Add package to your `composer.json`:
-
-```json
-{
-    "require": {
-        "mvar/apache2-log-parser": "dev-master"
-    }
-}
-```
-
-And run Composer to install new packages:
+The recommended way to install this is through [Composer](https://getcomposer.org):
 
 ```bash
-php composer.phar install
+composer require mvar/apache2-log-parser:dev-master
 ```
 
 Features
@@ -125,3 +113,12 @@ It is also possible to parse compressed files by adding stream wrapper before fi
 ```php
 $logFile = 'compress.zlib://file:///path/to/log.gz';
 ```
+
+TODO for future releases
+------------------------
+
+ - Modifiers support
+ - Custom time format support
+ - PHP stack trace collector (few error log lines can be aggregated as single PHP error)
+
+Feel free to make a Pull Request :)
