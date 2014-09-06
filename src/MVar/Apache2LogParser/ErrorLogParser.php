@@ -11,8 +11,6 @@ namespace MVar\Apache2LogParser;
 
 /**
  * Apache 2.2 and older error log parser
- *
- * @package MVar\Apache2LogParser
  */
 class ErrorLogParser extends AbstractLineParser
 {
@@ -34,9 +32,7 @@ class ErrorLogParser extends AbstractLineParser
     }
 
     /**
-     * Returns pattern of log line
-     *
-     * @return string
+     * {@inheritDoc}
      */
     protected function getPattern()
     {

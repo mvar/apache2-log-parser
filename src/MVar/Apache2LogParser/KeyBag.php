@@ -9,6 +9,10 @@
 
 namespace MVar\Apache2LogParser;
 
+/**
+ * This is the class that holds temporary keys for preg_match(). This helps
+ * to convert flat array to multidimensional
+ */
 class KeyBag
 {
     /**

@@ -9,6 +9,9 @@
 
 namespace MVar\Apache2LogParser;
 
+/**
+ * Apache2 access log parser
+ */
 class AccessLogParser extends AbstractLineParser
 {
     // Copied from Apache 2.2.22 config
@@ -36,7 +39,7 @@ class AccessLogParser extends AbstractLineParser
     /**
      * Constructor
      *
-     * @param string $format
+     * @param string $format One of defined constants or custom log line format
      */
     public function __construct($format)
     {

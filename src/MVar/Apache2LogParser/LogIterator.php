@@ -12,6 +12,9 @@ namespace MVar\Apache2LogParser;
 use MVar\Apache2LogParser\Exception\NoMatchesException;
 use MVar\Apache2LogParser\Exception\ParserException;
 
+/**
+ * This is the class that helps to iterate through log file
+ */
 class LogIterator implements \Iterator
 {
     /**
