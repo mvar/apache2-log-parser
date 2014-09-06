@@ -20,27 +20,27 @@ class LogIterator implements \Iterator
     /**
      * @var LineParserInterface
      */
-    protected $parser;
+    private $parser;
 
     /**
      * @var string
      */
-    protected $logFile;
+    private $logFile;
 
     /**
      * @var resource
      */
-    protected $fileHandler;
+    private $fileHandler;
 
     /**
      * @var string
      */
-    protected $currentLine;
+    private $currentLine;
 
     /**
      * @var bool
      */
-    protected $skipEmptyLines;
+    private $skipEmptyLines;
 
     /**
      * Constructor

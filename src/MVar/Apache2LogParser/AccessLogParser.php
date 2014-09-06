@@ -24,12 +24,12 @@ class AccessLogParser extends AbstractLineParser
     /**
      * @var string
      */
-    protected $format;
+    private $format;
 
     /**
      * @var string
      */
-    protected $pattern;
+    private $pattern;
 
     /**
      * @var KeyBag
