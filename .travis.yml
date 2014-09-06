@@ -7,16 +7,16 @@ php:
   - 5.6
   - hhvm
 
-matrix:
-  allow_failures:
-    - php: hhvm
+before_install:
+  - composer self-update
 
-before_script:
-  - composer install --no-interaction --dev --prefer-dist
-  - ./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor/ ./
+install:
+  - composer update --no-interaction --dev --prefer-dist
 
 script:
-  - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-  # Upload coverage data to Scrutinizer
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+
+# Upload coverage data to Scrutinizer
+after_success:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
