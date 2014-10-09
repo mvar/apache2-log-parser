@@ -23,6 +23,7 @@ Features
      - Access log
      - Error log (currently, for Apache 2.2 and older)
  - Log files iterator
+ - Low memory footprint even with huge files
 
 Usage
 -----

@@ -47,7 +47,7 @@ class AccessLogParser extends AbstractLineParser
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function prepareParsedData(array $matches)
     {
@@ -91,7 +91,7 @@ class AccessLogParser extends AbstractLineParser
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function getPattern()
     {

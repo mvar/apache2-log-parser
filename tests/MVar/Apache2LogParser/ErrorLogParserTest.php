@@ -12,7 +12,7 @@ namespace MVar\Apache2LogParser;
 class ErrorLogParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function setUpBeforeClass()
     {

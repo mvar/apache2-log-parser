@@ -18,7 +18,7 @@ use MVar\Apache2LogParser\Exception\ParserException;
 abstract class AbstractLineParser implements LineParserInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function parseLine($line)
     {

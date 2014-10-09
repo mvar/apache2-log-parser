@@ -131,7 +131,7 @@ class LogIterator implements \Iterator
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function next()
     {
@@ -149,7 +149,7 @@ class LogIterator implements \Iterator
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function valid()
     {
@@ -157,7 +157,7 @@ class LogIterator implements \Iterator
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function rewind()
     {

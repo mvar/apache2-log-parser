@@ -15,7 +15,7 @@ namespace MVar\Apache2LogParser;
 class ErrorLogParser extends AbstractLineParser
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function prepareParsedData(array $matches)
     {
@@ -32,7 +32,7 @@ class ErrorLogParser extends AbstractLineParser
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function getPattern()
     {
