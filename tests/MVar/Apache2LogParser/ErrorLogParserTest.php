@@ -76,4 +76,48 @@ class ErrorLogParserTest extends \PHPUnit_Framework_TestCase
             ),
         );
     }
+
+    /**
+     * Test that a new log line pattern can be set and the parser successfully parses a line by that pattern.
+     *
+     * @param string $line
+     * @param array  $expectedResult
+     *
+     * @dataProvider provideCustomPatternLineData
+     * @throws Exception\NoMatchesException
+     * @throws Exception\ParserException
+     */
+    public function testNewPatternCanBeSet($line, array $expectedResult)
+    {
+
+        $format = '/\[(?<time>.+?)\] \[:(?<level>.+?)\] \[pid (?<pid>[0-9]+)\] '
+            . '\[client (?<ip>[0-9.]+):(?<port>[0-9]+)\] (?<message>.*)/';
+        $parser = new ErrorLogParser($format);
+
+        $result = $parser->parseLine($line);
+
+        $this->assertEquals($expectedResult, $result);
+    }
+
+    /**
+     * @return array Data for testNewPatternCanBeSet
+     */
+    public function provideCustomPatternLineData()
+    {
+
+        return array(
+            array(
+                '[Wed Oct 08 16:25:01 2014] [:error] [pid 15359] [client 127.0.0.1:41952] '
+                . 'PHP Error 1 Class "LogQueue" not found',
+                array(
+                    'time'    => '2014-10-08T16:25:01+0000',
+                    'level'   => 'error',
+                    'pid'     => '15359',
+                    'ip'      => '127.0.0.1',
+                    'port'    => '41952',
+                    'message' => 'PHP Error 1 Class "LogQueue" not found'
+                )
+            ),
+        );
+    }
 }
