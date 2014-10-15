@@ -14,6 +14,22 @@ namespace MVar\Apache2LogParser;
  */
 class ErrorLogParser extends AbstractLineParser
 {
+
+    /**
+     * @var string Holds the pattern against which to parse error log lines
+     */
+    protected $_pattern;
+
+    /**
+     * @param null|string $pattern Error log line pattern or null to use the default
+     */
+    public function __construct($pattern = null)
+    {
+
+        $this->_pattern = $pattern ?: '/\[(?<time>.+)\] \[(?<error_level>\w+)\]( \[client\ (?<client_ip>.+)])? ' .
+            '(?<message>.+(?=, referer)|.+)(, referer: (?<referer>.+))?/';
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -36,9 +52,6 @@ class ErrorLogParser extends AbstractLineParser
      */
     protected function getPattern()
     {
-        $pattern = '/\[(?<time>.+)\] \[(?<error_level>\w+)\]( \[client\ (?<client_ip>.+)])? ' .
-            '(?<message>.+(?=, referer)|.+)(, referer: (?<referer>.+))?/';
-
-        return $pattern;
+        return $this->_pattern;
     }
 }
