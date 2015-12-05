@@ -14,6 +14,8 @@ namespace MVar\Apache2LogParser;
  */
 class ErrorLogParser extends AbstractLineParser
 {
+    use TimeFormatTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -24,9 +26,8 @@ class ErrorLogParser extends AbstractLineParser
         $result = array_intersect_key($matches, array_flip($filtered));
         $result = array_filter($result);
 
-        // Convert date format to ISO
-        $date = new \DateTime($result['time']);
-        $result['time'] = $date->format(\DateTime::ISO8601);
+        // Convert time
+        $result['time'] = $this->formatTime($result['time']);
 
         return $result;
     }

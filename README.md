@@ -54,7 +54,7 @@ array (
   'remote_host' => '66.249.78.230',
   'identity' => '-',
   'remote_user' => '-',
-  'time' => '2013-12-29T16:07:58+0200',
+  'time' => '29/Dec/2013:16:07:58 +0200',
   'request_line' => 'GET /my-page/ HTTP/1.1',
   'response_code' => '200',
   'bytes_sent' => '2490',

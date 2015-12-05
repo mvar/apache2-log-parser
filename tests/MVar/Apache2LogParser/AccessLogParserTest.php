@@ -82,7 +82,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '127.0.0.1',
                     'identity' => '-',
                     'remote_user' => 'frank',
-                    'time' => '2000-10-10T13:55:36-0700',
+                    'time' => '10/Oct/2000:13:55:36 -0700',
                     'request_line' => 'GET /apache_pb.gif HTTP/1.0',
                     'request' => [
                         'method' => 'GET',
@@ -101,7 +101,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '127.0.0.1',
                     'identity' => '-',
                     'remote_user' => 'frank',
-                    'time' => '2000-10-10T13:55:36-0700',
+                    'time' => '10/Oct/2000:13:55:36 -0700',
                     'request_line' => 'GET /apache_pb.gif HTTP/1.0',
                     'request' => [
                         'method' => 'GET',
@@ -124,7 +124,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '127.0.0.1',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2013-12-28T19:03:49+0200',
+                    'time' => '28/Dec/2013:19:03:49 +0200',
                     'request_line' => 'GET /test-page/ HTTP/1.1',
                     'request' => [
                         'method' => 'GET',
@@ -147,7 +147,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '66.249.78.230',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2013-12-29T16:07:58+0200',
+                    'time' => '29/Dec/2013:16:07:58 +0200',
                     'request_line' => 'GET /robots.txt HTTP/1.1',
                     'request' => [
                         'method' => 'GET',
@@ -170,7 +170,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '71.82.1.1',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2013-12-29T17:37:40+0200',
+                    'time' => '29/Dec/2013:17:37:40 +0200',
                     'request_line' => 'GET / HTTP/1.1',
                     'request' => [
                         'method' => 'GET',
@@ -193,7 +193,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '192.168.25.1',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2012-06-25T14:00:14-0700',
+                    'time' => '25/Jun/2012:14:00:14 -0700',
                     'request_line' => '-',
                     'response_code' => '408',
                     'request_headers' => [
@@ -210,7 +210,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '192.168.139.1',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2013-10-10T00:26:32+0300',
+                    'time' => '10/Oct/2013:00:26:32 +0300',
                     'request_line' => 'GET /' . str_repeat('a', 7995),
                     'request' => [
                         'method' => 'GET',
@@ -233,7 +233,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '74.86.158.106',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2014-01-09T04:11:40-0800',
+                    'time' => '09/Jan/2014:04:11:40 -0800',
                     'request_line' => 'HEAD / HTTP/1.1',
                     'request' => [
                         'method' => 'HEAD',
@@ -255,7 +255,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '12.34.56.78',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2014-02-06T02:00:18-0800',
+                    'time' => '06/Feb/2014:02:00:18 -0800',
                     'request_line' => 'GET / HTTP/1.1',
                     'request' => [
                         'method' => 'GET',
@@ -277,7 +277,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '12.34.56.78',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2014-05-20T17:21:57-0700',
+                    'time' => '20/May/2014:17:21:57 -0700',
                     'request_line' => 'GET /test/ HTTP/1.1',
                     'request' => [
                         'method' => 'GET',
@@ -302,7 +302,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
                     'remote_host' => '127.0.0.1',
                     'identity' => '-',
                     'remote_user' => '-',
-                    'time' => '2012-06-26T10:41:10-0700',
+                    'time' => '26/Jun/2012:10:41:10 -0700',
                     'request_line' => 'OPTIONS * HTTP/1.0',
                     'request' => [
                         'method' => 'OPTIONS',

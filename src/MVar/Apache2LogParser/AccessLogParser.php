@@ -14,6 +14,8 @@ namespace MVar\Apache2LogParser;
  */
 class AccessLogParser extends AbstractLineParser
 {
+    use TimeFormatTrait;
+
     // Copied from Apache 2.2.22 config
     const FORMAT_COMMON = '%h %l %u %t "%r" %>s %O';
     const FORMAT_COMBINED = '%h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"';
@@ -34,7 +36,7 @@ class AccessLogParser extends AbstractLineParser
     /**
      * @var KeyBag
      */
-    protected $keyBag;
+    private $keyBag;
 
     /**
      * Constructor
@@ -56,7 +58,9 @@ class AccessLogParser extends AbstractLineParser
         $result = array_intersect_key($matches, array_flip($filtered));
         $result = array_filter($result);
 
-        $this->formatTime($result);
+        if (isset($result['time'])) {
+            $result['time'] = $this->formatTime($result['time']);
+        }
 
         if (isset($result['response_body_size']) && $result['response_body_size'] == '-') {
             $result['response_body_size'] = 0;
@@ -75,19 +79,6 @@ class AccessLogParser extends AbstractLineParser
         }
 
         return $result;
-    }
-
-    /**
-     * Convert date format to ISO
-     *
-     * @param array $result
-     */
-    protected function formatTime(array &$result)
-    {
-        if (isset($result['time'])) {
-            $date = new \DateTime($result['time']);
-            $result['time'] = $date->format(\DateTime::ISO8601);
-        }
     }
 
     /**
