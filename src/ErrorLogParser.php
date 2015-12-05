@@ -10,7 +10,7 @@
 namespace MVar\Apache2LogParser;
 
 /**
- * Apache 2.2 and older error log parser
+ * Apache 2.2 and older error log parser.
  */
 class ErrorLogParser extends AbstractLineParser
 {

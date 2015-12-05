@@ -12,7 +12,7 @@ namespace MVar\Apache2LogParser;
 class KeyBagTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test for add() and get() methods
+     * Test for add() and get() methods.
      *
      * @param string $namespace
      * @param string $key
@@ -28,7 +28,7 @@ class KeyBagTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for get() when nothing is set
+     * Test for get() when nothing is set.
      */
     public function testGetNull()
     {
@@ -38,7 +38,7 @@ class KeyBagTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for getNamespaces()
+     * Test for getNamespaces().
      */
     public function testGetNamespaces()
     {
@@ -60,7 +60,7 @@ class KeyBagTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for registerNamespace()
+     * Test for registerNamespace().
      */
     public function testRegisterNamespace()
     {
@@ -73,7 +73,7 @@ class KeyBagTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testAddAndGet()
+     * Data provider for testAddAndGet().
      *
      * @return array[]
      */

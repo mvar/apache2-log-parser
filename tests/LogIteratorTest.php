@@ -14,7 +14,7 @@ use MVar\Apache2LogParser\Exception\NoMatchesException;
 class LogIteratorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Creates and returns instance of parser mock
+     * Creates and returns instance of parser mock.
      *
      * @return \PHPUnit_Framework_MockObject_MockObject|LineParserInterface
      */
@@ -24,7 +24,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for log iterator
+     * Test for log iterator.
      *
      * @param string $logfile
      * @param int    $rowsCount
@@ -50,7 +50,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for iterator in case of empty lines in log
+     * Test for iterator in case of empty lines in log.
      */
     public function testIteratorWithEmptyLines()
     {
@@ -80,7 +80,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for iterator in case of file handler exception
+     * Test for iterator in case of file handler exception.
      *
      * @expectedException \MVar\Apache2LogParser\Exception\ParserException
      * @expectedExceptionMessage Can not open log file
@@ -92,7 +92,7 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testIterator()
+     * Data provider for testIterator().
      *
      * @return array[]
      */

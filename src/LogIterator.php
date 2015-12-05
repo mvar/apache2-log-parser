@@ -13,7 +13,7 @@ use MVar\Apache2LogParser\Exception\NoMatchesException;
 use MVar\Apache2LogParser\Exception\ParserException;
 
 /**
- * This is the class that helps to iterate through log file
+ * This is the class that helps to iterate through log file.
  */
 class LogIterator implements \Iterator
 {
@@ -43,7 +43,7 @@ class LogIterator implements \Iterator
     private $skipEmptyLines;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string              $logFile
      * @param LineParserInterface $parser
@@ -57,7 +57,7 @@ class LogIterator implements \Iterator
     }
 
     /**
-     * Destructor
+     * Destructor.
      */
     public function __destruct()
     {
@@ -65,7 +65,7 @@ class LogIterator implements \Iterator
     }
 
     /**
-     * Returns file handler
+     * Returns file handler.
      *
      * @return resource
      * @throws ParserException
@@ -86,7 +86,7 @@ class LogIterator implements \Iterator
     }
 
     /**
-     * Reads single line from file
+     * Reads single line from file.
      *
      * @throws ParserException
      */
@@ -111,7 +111,7 @@ class LogIterator implements \Iterator
     }
 
     /**
-     * Returns parsed current line
+     * Returns parsed current line.
      *
      * @return array|null
      */

@@ -12,7 +12,7 @@ namespace MVar\Apache2LogParser;
 use MVar\Apache2LogParser\Exception\ParserException;
 
 /**
- * This is the interface for single log line parser
+ * This is the interface for single log line parser.
  */
 interface LineParserInterface
 {

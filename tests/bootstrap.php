@@ -8,4 +8,4 @@
  */
 
 $loader = require __DIR__ . '/../vendor/autoload.php';
-$loader->add('MVar\\Apache2LogParser\\', __DIR__);
+$loader->addPsr4('MVar\\Apache2LogParser\\', __DIR__);

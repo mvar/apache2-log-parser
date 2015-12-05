@@ -10,9 +10,8 @@
 namespace MVar\Apache2LogParser\Exception;
 
 /**
- * This exception is thrown when the string passed to parser does not match
- * expected pattern
+ * This exception is thrown when parser is unable to parse given string.
  */
-class NoMatchesException extends ParserException
+class ParserException extends \Exception
 {
 }

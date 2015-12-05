@@ -10,7 +10,7 @@
 namespace MVar\Apache2LogParser;
 
 /**
- * Apache2 access log parser
+ * Apache2 access log parser.
  */
 class AccessLogParser extends AbstractLineParser
 {
@@ -39,7 +39,7 @@ class AccessLogParser extends AbstractLineParser
     private $keyBag;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $format One of defined constants or custom log line format
      */
@@ -112,7 +112,7 @@ class AccessLogParser extends AbstractLineParser
 
     /**
      * Quotes characters which are not included in log format directives
-     * and returns quoted format string
+     * and returns quoted format string.
      *
      * @return string
      */
@@ -215,7 +215,7 @@ class AccessLogParser extends AbstractLineParser
     }
 
     /**
-     * Patterns that requires preg_replace_callback() to be set in place
+     * Patterns that requires preg_replace_callback() to be set in place.
      *
      * @return array
      */

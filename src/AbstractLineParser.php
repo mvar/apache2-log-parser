@@ -13,7 +13,7 @@ use MVar\Apache2LogParser\Exception\NoMatchesException;
 use MVar\Apache2LogParser\Exception\ParserException;
 
 /**
- * Abstract line parser
+ * Abstract line parser.
  */
 abstract class AbstractLineParser implements LineParserInterface
 {
@@ -41,7 +41,7 @@ abstract class AbstractLineParser implements LineParserInterface
     }
 
     /**
-     * Prepare parsed data (matches) for end user
+     * Prepare parsed data (matches) for end user.
      *
      * @param array $matches
      *
@@ -50,7 +50,7 @@ abstract class AbstractLineParser implements LineParserInterface
     abstract protected function prepareParsedData(array $matches);
 
     /**
-     * Returns pattern of log line
+     * Returns pattern of log line.
      *
      * @return string
      */

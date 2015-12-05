@@ -15,7 +15,7 @@ namespace MVar\Apache2LogParser;
 class AccessLogParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test for parseLine()
+     * Test for parseLine().
      *
      * @param string $format
      * @param string $logLine
@@ -32,7 +32,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for parseLine() if pattern is cached
+     * Test for parseLine() if pattern is cached.
      */
     public function testParseLineCachedPattern()
     {
@@ -52,7 +52,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for parseLine() in case of invalid line
+     * Test for parseLine() in case of invalid line.
      *
      * @param string $format
      * @param string $logLine
@@ -68,7 +68,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testParseLine()
+     * Data provider for testParseLine().
      *
      * @return array[]
      */
@@ -576,7 +576,7 @@ class AccessLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testParseLineNoMatches()
+     * Data provider for testParseLineNoMatches().
      *
      * @return array[]
      */

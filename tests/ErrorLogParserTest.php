@@ -20,7 +20,7 @@ class ErrorLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for parseLine()
+     * Test for parseLine().
      *
      * @param string $line
      * @param array  $expectedResult
@@ -36,7 +36,7 @@ class ErrorLogParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testParseLine()
+     * Data provider for testParseLine().
      *
      * @return array[]
      */
