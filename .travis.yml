@@ -1,3 +1,5 @@
+sudo: false
+
 language: php
 
 php:
@@ -7,7 +9,7 @@ php:
   - hhvm
 
 install:
-  - composer update --no-interaction --prefer-dist
+  - composer install --no-interaction --prefer-dist
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
