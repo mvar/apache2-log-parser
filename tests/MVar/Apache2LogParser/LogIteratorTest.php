@@ -68,13 +68,13 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
 
         $iterator = new LogIterator(__DIR__ . '/Fixtures/access.log', $parser, false);
 
-        $result = array();
+        $result = [];
         foreach ($iterator as $data) {
             $result[] = $data;
         }
 
         // Test if empty line was not parsed (NULL)
-        $expectedResult = array('parsed_line', null, 'parsed_line');
+        $expectedResult = ['parsed_line', null, 'parsed_line'];
 
         $this->assertEquals($expectedResult, $result);
     }
@@ -98,13 +98,13 @@ class LogIteratorTest extends \PHPUnit_Framework_TestCase
      */
     public function getTestIteratorData()
     {
-        $data = array();
+        $data = [];
 
         // Simple log
-        $data[] = array(__DIR__ . '/Fixtures/access.log', 2);
+        $data[] = [__DIR__ . '/Fixtures/access.log', 2];
 
         // Compressed log
-        $data[] = array('compress.zlib://file://' . __DIR__ . '/Fixtures/access_compressed.gz', 4);
+        $data[] = ['compress.zlib://file://' . __DIR__ . '/Fixtures/access_compressed.gz', 4];
 
         return $data;
     }

@@ -42,13 +42,13 @@ class KeyBagTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNamespaces()
     {
-        $data = array(
-            array('namespace_1', 'key_11'),
-            array('namespace_2', 'key_21'),
-        );
+        $data = [
+            ['namespace_1', 'key_11'],
+            ['namespace_2', 'key_21'],
+        ];
 
         $holder = new KeyBag();
-        $namespaces = array();
+        $namespaces = [];
 
         foreach ($data as $row) {
             list($namespace, $key) = $row;
@@ -64,7 +64,7 @@ class KeyBagTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterNamespace()
     {
-        $namespaces = array('ns_1');
+        $namespaces = ['ns_1'];
 
         $holder = new KeyBag();
         $holder->registerNamespace($namespaces[0]);
@@ -79,9 +79,9 @@ class KeyBagTest extends \PHPUnit_Framework_TestCase
      */
     public function getTestAddAndGetData()
     {
-        return array(
-            array('namespace_1', 'key_11'),
-            array('namespace_2', 'key_21'),
-        );
+        return [
+            ['namespace_1', 'key_11'],
+            ['namespace_2', 'key_21'],
+        ];
     }
 }

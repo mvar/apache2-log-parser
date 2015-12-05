@@ -20,7 +20,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     {
         $mock = $this->getMock(
             '\\MVar\\Apache2LogParser\\AbstractLineParser',
-            array('prepareParsedData', 'getPattern')
+            ['prepareParsedData', 'getPattern']
         );
 
         return $mock;
@@ -35,7 +35,7 @@ class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
     public function testParseLineExceptionArgument()
     {
         $parser = $this->getParser();
-        $parser->parseLine(array(123, 456));
+        $parser->parseLine([123, 456]);
     }
 
     /**

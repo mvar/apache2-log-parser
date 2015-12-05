@@ -18,7 +18,7 @@ class KeyBag
     /**
      * @var array
      */
-    protected $storage = array();
+    protected $storage = [];
 
     /**
      * Stores key to local storage and returns it's index
@@ -59,7 +59,7 @@ class KeyBag
      */
     public function registerNamespace($namespace)
     {
-        $this->storage[$namespace] = array();
+        $this->storage[$namespace] = [];
     }
 
     /**

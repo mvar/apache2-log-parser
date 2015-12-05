@@ -54,5 +54,5 @@ abstract class AbstractLineParser implements LineParserInterface
      *
      * @return string
      */
-     abstract protected function getPattern();
+    abstract protected function getPattern();
 }

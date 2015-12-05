@@ -157,7 +157,7 @@ class AccessLogParser extends AbstractLineParser
         // This allows to convert parsed variables to array
         $this->keyBag->registerNamespace('request');
 
-        return array(
+        return [
             // The percent sign
             '%%' => '%',
             // Local IP address
@@ -220,7 +220,7 @@ class AccessLogParser extends AbstractLineParser
             '%v' => '(?<canonical_server_name>\S+)',
             // Connection status when response is completed
             '%X' => '(?<connection_status>[Xx]|\+|\-)',
-        );
+        ];
     }
 
     /**
@@ -232,7 +232,7 @@ class AccessLogParser extends AbstractLineParser
     {
         $holder = $this->keyBag;
 
-        return array(
+        return [
             // Header lines in the request sent to the server (e.g., User-Agent, Referer)
             '/%\{([^\}]+)\}i/' => function (array $matches) use ($holder) {
                 $index = $holder->add('request_headers', $matches[1]);
@@ -273,6 +273,6 @@ class AccessLogParser extends AbstractLineParser
             '/%\{(canonical|local|remote)\}p/' => function (array $matches) {
                 return '(?<' . $matches[1] . '_port>\d+)';
             },
-        );
+        ];
     }
 }

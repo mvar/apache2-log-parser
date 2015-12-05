@@ -122,4 +122,4 @@ TODO for future releases
  - Custom time format support
  - PHP stack trace collector (few error log lines can be aggregated as single PHP error)
 
-Feel free to make a Pull Request :)
+Feel free to make a [Pull Request](https://github.com/mvar/apache2-log-parser/pulls) :)
