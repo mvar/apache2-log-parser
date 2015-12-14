@@ -114,6 +114,23 @@ It is also possible to parse compressed files by adding stream wrapper before fi
 ```php
 $logFile = 'compress.zlib://file:///path/to/log.gz';
 ```
+     
+### Date and Time Formatting
+
+By default date and time is returned as is, raw string. You can change that
+behaviour in two ways. First, set custom format string and formatted date
+string will be returned. Second, set time format to `true` and you will get
+`\DateTime` object.
+ 
+```php       
+$parser = new AccessLogParser(AccessLogParser::FORMAT_COMMON);
+
+// Set custom date and time format accepted by date()
+$parser->setTimeFormat('Y-m-d H:i:s');
+
+// Set TRUE and you will get \DateTime object
+$parser->setTimeFormat(true);
+```
 
 TODO for future releases
 ------------------------
