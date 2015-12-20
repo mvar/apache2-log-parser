@@ -11,7 +11,9 @@ namespace MVar\Apache2LogParser\Exception;
 
 /**
  * This exception is thrown when parser is unable to parse given string.
+ *
+ * @deprecated Will be removed in 3.0. Use \MVar\LogParser\Exception\ParserException instead.
  */
-class ParserException extends \Exception
+class ParserException extends \MVar\LogParser\Exception\ParserException
 {
 }

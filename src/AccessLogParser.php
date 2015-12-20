@@ -53,10 +53,7 @@ class AccessLogParser extends AbstractLineParser
      */
     protected function prepareParsedData(array $matches)
     {
-        // Remove indexed values
-        $filtered = array_filter(array_keys($matches), 'is_string');
-        $result = array_intersect_key($matches, array_flip($filtered));
-        $result = array_filter($result);
+        $result = parent::prepareParsedData($matches);
 
         if (isset($result['time'])) {
             $result['time'] = $this->formatTime($result['time']);

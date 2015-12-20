@@ -9,10 +9,14 @@
 
 namespace MVar\Apache2LogParser\Exception;
 
+use MVar\LogParser\Exception\MatchException;
+
 /**
  * This exception is thrown when the string passed to parser does not match
  * expected pattern.
+ *
+ * @deprecated Will be removed in 3.0. Use \MVar\LogParser\Exception\MatchException instead.
  */
-class NoMatchesException extends ParserException
+class NoMatchesException extends MatchException
 {
 }

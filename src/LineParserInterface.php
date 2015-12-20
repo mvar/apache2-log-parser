@@ -9,20 +9,11 @@
 
 namespace MVar\Apache2LogParser;
 
-use MVar\Apache2LogParser\Exception\ParserException;
-
 /**
  * This is the interface for single log line parser.
+ *
+ * @deprecated Will be removed in 3.0. Use \MVar\LogParser\LineParserInterface instead.
  */
-interface LineParserInterface
+interface LineParserInterface extends \MVar\LogParser\LineParserInterface
 {
-    /**
-     * Parses single log line
-     *
-     * @param string $line
-     *
-     * @return array
-     * @throws ParserException
-     */
-    public function parseLine($line);
 }

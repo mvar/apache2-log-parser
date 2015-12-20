@@ -1,8 +1,8 @@
-Apache2 access and error logs parser
-====================================
+Apache web server access and error log parser
+=============================================
 
-[![Latest Stable Version](https://poser.pugx.org/mvar/apache2-log-parser/v/stable.png)](https://packagist.org/packages/mvar/apache2-log-parser)
-[![Build Status](https://travis-ci.org/mvar/apache2-log-parser.png?branch=master)](https://travis-ci.org/mvar/apache2-log-parser)
+[![Latest Stable Version](https://poser.pugx.org/mvar/apache2-log-parser/v/stable)](https://packagist.org/packages/mvar/apache2-log-parser)
+[![Build Status](https://travis-ci.org/mvar/apache2-log-parser.svg?branch=master)](https://travis-ci.org/mvar/apache2-log-parser)
 [![Code Coverage](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/badges/coverage.png?s=c4f63101c2d2877a2a0623b3a75ee18b67636b97)](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/badges/quality-score.png?s=2eb88f010261c2bc70e969cb98107a57342b3543)](https://scrutinizer-ci.com/g/mvar/apache2-log-parser/)
 
@@ -28,7 +28,7 @@ Features
 Usage
 -----
 
-### Parsing single Apache2 access log line
+### Parsing single Apache access log line
 
 ```php
 <?php
@@ -37,8 +37,9 @@ require __DIR__ . '/vendor/autoload.php';
 
 use MVar\Apache2LogParser\AccessLogParser;
 
-// Format can be any of predefined `AccessLogParser::FORMAT_*` constants or custom string
-$parser = new AccessLogParser(AccessLogParser::FORMAT_COMBINED);
+// Access log format from your Apache configuration
+// It can be any of predefined `AccessLogParser::FORMAT_*` constants or custom string
+$parser = new AccessLogParser('%h %l %u %t "%r" %>s %O "%{Referer}i" "%{User-Agent}i"');
 
 // String which you want to parse
 $line = '66.249.78.230 - - [29/Dec/2013:16:07:58 +0200] "GET /my-page/ HTTP/1.1" 200 2490 "-" ' .
@@ -93,7 +94,7 @@ file name and parser arguments:
 require __DIR__ . '/vendor/autoload.php';
 
 use MVar\Apache2LogParser\AccessLogParser;
-use MVar\Apache2LogParser\LogIterator;
+use MVar\LogParser\LogIterator;
 
 $parser = new AccessLogParser(AccessLogParser::FORMAT_COMMON);
 
@@ -102,19 +103,15 @@ foreach (new LogIterator('access.log', $parser) as $line => $data) {
 }
 ```
 
-The above example will output:
+The example above will output:
 
 ```
 GET /favicon.ico
 GET /icons/blank.gif
 ```
 
-It is also possible to parse compressed files by adding stream wrapper before file name:
+> To get more information about iterator please visit [mvar/log-iterator][1] documentation.
 
-```php
-$logFile = 'compress.zlib://file:///path/to/log.gz';
-```
-     
 ### Date and Time Formatting
 
 By default date and time is returned as is, raw string. You can change this
@@ -137,6 +134,7 @@ TODO for future releases
 
  - Modifiers support
  - Custom time format support
- - PHP stack trace collector (few error log lines can be aggregated as single PHP error)
 
 Feel free to make a [Pull Request](https://github.com/mvar/apache2-log-parser/pulls) :)
+
+[1]: https://github.com/mvar/log-parser

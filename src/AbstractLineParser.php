@@ -14,8 +14,10 @@ use MVar\Apache2LogParser\Exception\ParserException;
 
 /**
  * Abstract line parser.
+ *
+ * @deprecated Will be removed in 3.0. Use \MVar\LogParser\AbstractLineParser instead.
  */
-abstract class AbstractLineParser implements LineParserInterface
+abstract class AbstractLineParser extends \MVar\LogParser\AbstractLineParser implements LineParserInterface
 {
     /**
      * {@inheritdoc}
@@ -39,20 +41,4 @@ abstract class AbstractLineParser implements LineParserInterface
 
         return $this->prepareParsedData($matches);
     }
-
-    /**
-     * Prepare parsed data (matches) for end user.
-     *
-     * @param array $matches
-     *
-     * @return array
-     */
-    abstract protected function prepareParsedData(array $matches);
-
-    /**
-     * Returns pattern of log line.
-     *
-     * @return string
-     */
-    abstract protected function getPattern();
 }
