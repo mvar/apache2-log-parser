@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.4",
         "mvar/log-parser": "~1.0"
     },
     "require-dev": {
