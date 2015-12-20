@@ -7,7 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace MVar\Apache2LogParser;
+namespace MVar\Apache2LogParser\Tests;
+
+use MVar\Apache2LogParser\ErrorLogParser;
 
 class ErrorLogParserTest extends \PHPUnit_Framework_TestCase
 {

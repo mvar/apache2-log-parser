@@ -7,7 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace MVar\Apache2LogParser;
+namespace MVar\Apache2LogParser\Tests;
+
+use MVar\Apache2LogParser\AbstractLineParser;
 
 class AbstractLineParserTest extends \PHPUnit_Framework_TestCase
 {

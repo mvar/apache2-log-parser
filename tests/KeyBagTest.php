@@ -7,7 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace MVar\Apache2LogParser;
+namespace MVar\Apache2LogParser\Tests;
+
+use MVar\Apache2LogParser\KeyBag;
 
 class KeyBagTest extends \PHPUnit_Framework_TestCase
 {

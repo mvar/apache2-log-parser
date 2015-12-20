@@ -117,7 +117,7 @@ $logFile = 'compress.zlib://file:///path/to/log.gz';
      
 ### Date and Time Formatting
 
-By default date and time is returned as is, raw string. You can change that
+By default date and time is returned as is, raw string. You can change this
 behaviour in two ways. First, set custom format string and formatted date
 string will be returned. Second, set time format to `true` and you will get
 `\DateTime` object.

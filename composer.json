@@ -18,5 +18,10 @@
         "psr-4": {
             "MVar\\Apache2LogParser\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MVar\\Apache2LogParser\\Tests\\": "tests/"
+        }
     }
 }
